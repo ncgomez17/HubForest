@@ -1,0 +1,27 @@
+[
+    {
+        "entidad":"etiqueta",
+        "campos":[
+            {
+                "nombre_campo":"id_etiqueta",
+                "primaria":true,
+                "autoincremental":true,
+                "type":"int",
+                "max_length":6,
+                "nulo":false,
+                "class":"none",
+                "on_blur":"none"
+            },
+            {
+                "nombre_campo":"nombre_etiqueta",
+                "primaria":false,
+                "autoincremental":false,
+                "type":"string",
+                "max_length":60,
+                "nulo":false,
+                "class":"none",
+                "onblur":"none"
+            }
+        ]
+    }
+]
