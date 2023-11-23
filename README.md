@@ -3,3 +3,5 @@ Gestionar las fases y estados de un proyecto de investigación forestal sobre la
 
 # Arquitectura
 La arquitectura del proyecto está compuesta de dos partes: la parte de Backend en PHP y la parte de Frontend en HTML/CSS/JS
+
+# Instalación
