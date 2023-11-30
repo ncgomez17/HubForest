@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    image: php:7.4-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./REST/HubForestBack:/var/www/html
+    depends_on:
+      - php
+    environment:
+      - ServerName=localhost
+
+  php:
+    image: php:7.4-apache
+    volumes:
+      - ./REST/HubForestBack:/var/www/html
+
