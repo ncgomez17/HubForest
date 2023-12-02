@@ -22,17 +22,31 @@ abstract class MappingBase{
 
 
 		
-	function connection(){
-		
-		if (isset($_SESSION['test'])) { //estamos realizando un test
-			$this->conn = new mysqli(self::$db_host, self::$db_user, self::$db_pass, self::$db_test) or die('fallo conexion');
-		}
-		else{
-			$this->conn = new mysqli(self::$db_host, self::$db_user, self::$db_pass, self::$db_name) or die('fallo conexion');
-		}
-		$this->conn->set_charset("utf8");
-		return $this->conn;
-	}
+	function connection() {
+    // Check if the connection is already established and valid
+    if ($this->conn && $this->conn->ping()) {
+        return $this->conn;
+    }
+
+    // Establish a new connection
+    if (isset($_SESSION['test'])) {
+        $this->conn = new mysqli(self::$db_host, self::$db_user, self::$db_pass, self::$db_test);
+    } else {
+			
+        $this->conn = new mysqli(self::$db_host, self::$db_user, self::$db_pass, self::$db_name);
+    }
+
+    // Check for connection errors
+    if ($this->conn->connect_error) {
+        die('Connection failed: ' . $this->conn->connect_error);
+    }
+
+    // Set character set
+    $this->conn->set_charset("utf8");
+
+    return $this->conn;
+}
+
 
 	private function escribelog(){
 		$queryres = str_replace(array("\n", "\t", "\r"), '', $this->query);

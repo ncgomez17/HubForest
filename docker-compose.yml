@@ -24,11 +24,13 @@ services:
       - mariadb
 
   web:
-    image: php:8.0-apache
+    build:
+      context: .
+      dockerfile: Dockerfile.php
     ports:
       - "8080:80"
     volumes:
-      - ./REST:/var/www/html:delegated
+      - ./REST:/var/www/html
     depends_on:
       - php
     environment:
@@ -38,6 +40,7 @@ services:
   php:
     image: php:8.0-apache
     volumes:
-      - ./REST:/var/www/html:delegated
+      - ./REST:/var/www/html
+
 volumes:
   mariadb_data:
