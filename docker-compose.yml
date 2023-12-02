@@ -9,7 +9,7 @@ services:
       MYSQL_USER: hubForestUser
       MYSQL_PASSWORD: hubForestUserPass
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - ./mariadb_data:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.1.1
@@ -26,21 +26,11 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.php
+      dockerfile: Dockerfile
     ports:
       - "8080:80"
     volumes:
       - ./REST:/var/www/html
-    depends_on:
-      - php
     environment:
       - ServerName=localhost
     restart: unless-stopped
-
-  php:
-    image: php:8.0-apache
-    volumes:
-      - ./REST:/var/www/html
-
-volumes:
-  mariadb_data:

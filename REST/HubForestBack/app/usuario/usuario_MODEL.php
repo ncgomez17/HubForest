@@ -9,22 +9,16 @@ class usuario_MODEL extends ModelBase{
 	// tabla tabla
 	// clave array(clavestabla)
 	// foraneas array(tablaforanea => clavetablaforanea)
+    // autoincrement array(atributos autoincrementales)
+    // unicos array(atributos unique)
 	function __construct(){
 
 		$this->tabla = 'usuario';
-		$this->clave = array('dni');
-		$this->foraneas = array('rol'=>'id_rol');
+		$this->clave = array('dni_usuario');
+		$this->foraneas = array();
 		$this->autoincrement = array();
+        $this->unicos = array('usuario');
+
 	}
-
-	function cambiar_contrasena(){
-		$this->mapping = new mapping($this->tabla);
-		$query = "UPDATE usuario SET contrasena = '".$_POST['contrasena']."' WHERE (dni = '".$_POST['dni']."')";
-		$result = $this->mapping->lanzarquery($query);
-		return $result;
-	}
-
-
 
 }
-?>

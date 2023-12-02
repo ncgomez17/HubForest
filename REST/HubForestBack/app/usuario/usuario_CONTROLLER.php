@@ -10,6 +10,5 @@ class usuario extends ControllerBase{
 	}
 
 
-
 } //FIN DE CLASS
 ?>
