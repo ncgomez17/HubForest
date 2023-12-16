@@ -1,6 +1,7 @@
 <?php
 
 include_once './Base/appServiceBase.php';
+include_once './usuario_MODEL.php';
 
 class usuario_SERVICE extends appServiceBase{
 
@@ -16,14 +17,14 @@ class usuario_SERVICE extends appServiceBase{
 
 	function inicializarRest(){
 
-		$this->listaAtributos = array('dni_usuario','usuario','passwd_usuario','borrado_usuario','id_rol');
+		$this->listaAtributos = array('id','correo','nombre','password','rol');
 
-		$this->listaAtributosSelect = array('dni_usuario','usuario','passwd_usuario','borrado_usuario','id_rol');
+		$this->listaAtributosSelect = array('id','correo','nombre','password','rol');
 
 		$this->notnull = array(
-						'ADD' => array('dni_usuario','usuario','passwd_usuario','borrado_usuario','id_rol'),
-						'EDIT' => array('dni_usuario','usuario','passwd_usuario','borrado_usuario','id_rol'),
-						'DELETE' => array('dni_usuario')
+						'ADD' => array(),
+						'EDIT' => array(),
+						'DELETE' => array('id')
 						);
 
 		$this->modelo = $this->crearModelOne('usuario');

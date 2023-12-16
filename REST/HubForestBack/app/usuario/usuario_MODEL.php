@@ -14,10 +14,10 @@ class usuario_MODEL extends ModelBase{
 	function __construct(){
 
 		$this->tabla = 'usuario';
-		$this->clave = array('dni_usuario');
+		$this->clave = array('id');
 		$this->foraneas = array();
-		$this->autoincrement = array();
-        $this->unicos = array('usuario');
+		$this->autoincrement = array('id');
+        $this->unicos = array();
 
 	}
 
