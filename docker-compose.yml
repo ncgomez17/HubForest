@@ -5,7 +5,7 @@ services:
     image: mariadb:10.4.21
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: HubForest
+      MYSQL_DATABASE: hubforest
       MYSQL_USER: hubForestUser
       MYSQL_PASSWORD: hubForestUserPass
     volumes:
