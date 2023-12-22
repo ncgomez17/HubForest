@@ -1,6 +1,6 @@
 
-//let urlAPIREST = 'http://localhost/webProjects/webs6uvigo/JRIARQ/JRIBack/index.php';
 let urlAPIREST = 'https://jrodeiro.webs.uvigo.es/PsEducaBase/index.php';
+//let urlAPIREST = 'http://localhost:8080/HubForestBack/index.php';         // Creo que sería esta la URL para las peticiones
 
 
 function peticionBackGeneral(formulario, controlador, action, datosextra=null){

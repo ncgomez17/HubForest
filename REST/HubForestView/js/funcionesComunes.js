@@ -22,7 +22,7 @@ function includeHeader() {
                 '<div class="container">' +
                 '<div class="row">' +
                 '<div class="col-md-4">' +
-                '<img src="img/logo.png" alt="Logo de la Aplicación" class="img-fluid" style="width: 40%">' +
+                '<img src="img/logo.png" alt="Logo de la Aplicación" class="img-fluid" style="width: 30%">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<nav class="navbar navbar-expand-md navbar-dark">' +
@@ -32,13 +32,13 @@ function includeHeader() {
                 '<div class="collapse navbar-collapse" id="navbarNav">' +
                 '<ul class="navbar-nav ml-auto">' +
                 '<li class="nav-item active">' +
-                '<a class="nav-link" href="#" onclick="cargarVista(\'home.html\')">Inicio</a>' +
+                '<a class="nav-link" href="index.html">Inicio</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
-                '<a class="nav-link" href="#" onclick="cargarVista(\'editUsuarios.html\')">Editar usuarios</a>' +
+                '<a class="nav-link" href="editUsuarios.html">Editar usuarios</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
-                '<a class="nav-link" href="#" onclick="cargarVista(\'listaUsuarios.html\')">Lista usuarios</a>' +
+                '<a class="nav-link" href="listaUsuarios.html">Lista usuarios</a>' +
                 '</li>' +
                 '</ul>' +
                 '</div>' +
@@ -87,4 +87,8 @@ function includeFooter() {
                 '</footer>';
 
     $("#footer").append(footer);
+}
+
+function userLoggedIn() {
+    // esta función debe comprobar si un usuario está o no logueado. Si hay token o no
 }
