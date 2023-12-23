@@ -31,7 +31,7 @@ function includeHeader() {
                 '</button>' +
                 '<div class="collapse navbar-collapse" id="navbarNav">' +
                 '<ul class="navbar-nav ml-auto">' +
-                '<li class="nav-item active">' +
+                '<li class="nav-item">' +
                 '<a class="nav-link" href="index.html">Inicio</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
@@ -89,6 +89,32 @@ function includeFooter() {
     $("#footer").append(footer);
 }
 
+/** Función para establecer el valor de la cookie*/
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+/** Función para obtener el valor de la cookie*/
+function getCookie(name) {
+    let cookie_name = name + "=";
+    let cookie_array = document.cookie.split(';');
+
+    for (let cookie of cookie_array) {
+        while (cookie.charAt(0) == ' ') cookie = cookie.substring(1, cookie.length);
+        if (cookie.indexOf(cookie_name) == 0) return cookie.substring(cookie_name.length, cookie.length);
+    }
+
+    return null;
+}
+
+/** Comprueba que un usuario esté logueado, obteniendo la cookie 'token'*/
 function userLoggedIn() {
-    // esta función debe comprobar si un usuario está o no logueado. Si hay token o no
+    let user_token = getCookie('token');
+    return (user_token !== null);
 }
