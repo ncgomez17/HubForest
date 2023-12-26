@@ -1,6 +1,7 @@
 
 async function getListUsuarios() {
     const response = await peticionBackGeneral('', 'usuario', 'SEARCH', null);
+    return response;
 }
 
 function construyeFilausuario(fila) {
