@@ -1,6 +1,6 @@
 
-let urlAPIREST = 'https://jrodeiro.webs.uvigo.es/PsEducaBase/index.php';
-//let urlAPIREST = 'http://localhost:8080/HubForestBack/index.php';         // Creo que sería esta la URL para las peticiones
+//let urlAPIREST = 'https://jrodeiro.webs.uvigo.es/PsEducaBase/index.php';
+let urlAPIREST = 'http://localhost:8080/HubForestBack/index.php';         // Creo que sería esta la URL para las peticiones
 
 
 function peticionBackGeneral(formulario, controlador, action, datosextra=null){
@@ -45,19 +45,22 @@ function peticionBackGeneral(formulario, controlador, action, datosextra=null){
 }
 
 async function creartablavista(entidad, titulos=null, datos=null){
+    
 
     //cargar automaticamente js de acciones y submit de entidad si existe
-    var nombrescript = '../js_app/'+entidad+'/'+entidad+'.js';
+    /*var nombrescript = '../js_app/'+entidad+'/'+entidad+'.js';
     try{
         $.getScript(nombrescript);
     }
     catch (error){
         //alert('no existe fichero script'+nombrescript);
-    }
-
+        console.log("oaiewfnoiwejfoiwaej")
+    }*/
+    
     var textodiv = '';
     
     if (datos==null){
+      
         //solicito las filas de la entidad en la bd
         await peticionBackGeneral('', entidad, 'SEARCH')// obtener datos de la bd sin criterios de busqueda
             .then((respuesta) => {

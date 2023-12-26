@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="img/logo.png" type="image/png">
     <script type="text/javascript" src="js/funcionesComunes.js"></script>
-    <script type="text/javascript" src="js_app/usuarios.js"></script>
+    <script type="text/javascript" src="js_app/usuario/usuario.js"></script>
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
-    
+    <script type="text/javascript" src="js/crearformularios.js"></script>
     <title>Listado de usuarios</title>
     <!-- Incluye los estilos de Bootstrap -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -24,23 +24,9 @@
 
     <div class="container mt-5">
         <h2>Listado de usuarios</h2>
-            <table id="tablaUsuarios">
-                <thead >
-                    <th class="id"><div class="id"></div>
-                    </th>
-                    <th class="nombre"><div class="nombre"></div>
-                    </th>
-                    <th class="correo"><div class="correo"></div>
-                    </th>
-                    <th class="rol"><div class="rol"></div>
-                    </th>
-                </thead>
-                
-                <tbody id="datosUsuarios">
-
-                </tbody>
-
-            </table>
+            <div id="tablaentidad" style="display: none;">
+            </div>
+            <div id="formularioentidad"></div>
         
     </div>
 
