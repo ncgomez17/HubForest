@@ -1,7 +1,6 @@
 
-function getListUsuarios() {
-    
-    creartablavista("usuario",["id", "correo", "nombre","password" ,"rol"],null);
+async function getListUsuarios() {
+    const response = await peticionBackGeneral('', 'usuario', 'SEARCH', null);
 }
 
 function construyeFilausuario(fila) {

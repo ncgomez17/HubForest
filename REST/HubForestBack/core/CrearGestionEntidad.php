@@ -516,7 +516,7 @@ class managementCore{
         $result = curl_exec($cliente); // obtengo un json
         
         if (curl_error($cliente)) { 
-            echo 'Error: '.curl_e($cliente); 
+            echo 'Error: '.curl_error($cliente); 
         }
         else{
          
