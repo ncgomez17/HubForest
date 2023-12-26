@@ -1,7 +1,34 @@
+function getListUsuarios() {
+    return peticionBackGeneral('', 'usuario', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? response['resource'] : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
 
-async function getListUsuarios() {
-    const response = await peticionBackGeneral('', 'usuario', 'SEARCH', null);
-    return response;
+function addUsuario(nombre, correo, password, rol) {
+    const usuario = {
+        nombre: nombre,
+        correo: correo,
+        password: password,
+        rol: rol
+    };
+    return peticionBackGeneral('', 'usuario', 'ADD', usuario)
+        .then(response => console.log("Solicitud con éxito",response))
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
+function deleteUsuario(idUsuario) {
+    return peticionBackGeneral('', 'usuario', 'DELETE', {'id':idUsuario})
+        .then(response => console.log("Solicitud con éxito",response))
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
 }
 
 function construyeFilausuario(fila) {
