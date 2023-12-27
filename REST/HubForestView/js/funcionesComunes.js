@@ -35,9 +35,6 @@ function includeHeader() {
                 '<a class="nav-link" href="index.html">Inicio</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
-                '<a class="nav-link" href="editUsuarios.html">Editar usuarios</a>' +
-                '</li>' +
-                '<li class="nav-item">' +
                 '<a class="nav-link" href="listaUsuarios.html">Lista usuarios</a>' +
                 '</li>' +
                 '</ul>' +
