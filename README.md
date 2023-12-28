@@ -10,9 +10,11 @@ Para poder instalar el proyecto se necesita contar con Docker para poder levanta
 - MariaDB: versión 10.4.21
 - PHPMyAdmin: versión 5.1.1
 - Servidor Apache
-- PHP: versión 8.0
+- PHP: versión 7.0
 
-Para poder levantar este entorno en docker tenemos que ejecutar los siguientes comandos:
+Para poder levantar este entorno en docker tenemos que tener docker instalado en nuestro sistema operativo entrando en la [documentación de Docker](https://docs.docker.com/get-docker/)
+
+Una vez tenemos docker instalado, ejecutar los siguientes comandos para la instalación de nuestro proyecto:
 
 ---------------------------------------
 
