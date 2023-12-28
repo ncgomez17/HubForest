@@ -26,6 +26,21 @@ function getListByParamUsuarios(nombre, correo, password, rol) {
         });
 }
 
+function getListByParamUsuarios_search(nombre, correo, password, rol) {
+    const usuario = {
+        nombre: nombre,
+        correo: correo,
+        password: password,
+        rol: rol
+    };
+    return peticionBackGeneral('', 'usuario', 'SEARCH', usuario)
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaUsuario(response['resource']) :  mostrarErrorBusq())
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
 function addUsuario(nombre, correo, password, rol) {
     const usuario = {
         nombre: nombre,
@@ -123,7 +138,7 @@ function getAtributos(tipo){
             addUsuario(nombre,correo,password,rol)
             break;
         case "Buscar":
-            getListByParamUsuarios(nombre,correo,password,rol)
+            getListByParamUsuarios_search(nombre,correo,password,rol)
             break;
      }
    /* if(tipo.includes("Editar")){
