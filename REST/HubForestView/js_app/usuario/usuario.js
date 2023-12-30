@@ -197,19 +197,6 @@ function cerrarModal(){
 
 }
 
-function mostrarErrorBusq(){
-    // Ventana modal
-    document.getElementById("mensajeError").style.display = "block";
-   
-}
-
-function cerrarErrorBusq(){
-    // Ventana modal
-    document.getElementById("mensajeError").style.display = "none";
-   
-}
-
-
 function mostrarBorrar(id){
     // Ventana modal
     document.getElementById("comprobarBorrar").style.display = "block";
@@ -220,11 +207,4 @@ function mostrarBorrar(id){
 function borrar(){
     var id = document.getElementById("idBorrar").value
     deleteUsuario(id)
-}
-
-function cerrarBorrar(){
-    // Ventana modal
-    var modal = document.getElementById("comprobarBorrar");
-    modal.style.display = "none"
-
 }

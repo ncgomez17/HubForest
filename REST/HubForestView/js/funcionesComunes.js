@@ -115,3 +115,22 @@ function userLoggedIn() {
     let user_token = getCookie('token');
     return (user_token !== null);
 }
+
+/** Muestra un error en la búsqueda en el modal */
+function mostrarErrorBusq(){
+    // Ventana modal
+    document.getElementById("mensajeError").style.display = "block";
+}
+
+/** Oculta un error en la búsqueda en el modal */
+function cerrarErrorBusq(){
+    // Ventana modal
+    document.getElementById("mensajeError").style.display = "none";
+}
+
+/** Cierra el modal de confirmación de eliminar un elemento */
+function cerrarBorrar(){
+    // Ventana modal
+    var modal = document.getElementById("comprobarBorrar");
+    modal.style.display = "none"
+}

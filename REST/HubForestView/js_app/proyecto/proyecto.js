@@ -156,11 +156,11 @@ function mostrarModal(tipo, idProyecto=null, nombre=null, fichero=null, descripc
   if(tipo.includes("Editar")){
       $("#formProyecto").attr('action' , 'javascript:getAtributos("Editar");');
 
-      $("#idProyecto").val(id);
+      $("#idProyecto").val(idProyecto);
       $("#nombre").val(nombre);
-      $("#fichero").val(password);
-      $("#descripcion").val(correo);
-      $("#encargado").val(rol);
+      $("#fichero").val(fichero);
+      $("#descripcion").val(descripcion);
+      $("#encargado").val(encargado);
   }
   else{
       if(tipo.includes("Buscar")){
@@ -168,10 +168,10 @@ function mostrarModal(tipo, idProyecto=null, nombre=null, fichero=null, descripc
           document.getElementById("fichero").required = false;
           document.getElementById("descripcion").required = false;
           document.getElementById("encargado").required = false;
-          $("#formUsuario").attr('action' , 'javascript:getAtributos("Buscar");');
+          $("#formProyecto").attr('action' , 'javascript:getAtributos("Buscar");');
       }
       else{
-          $("#formUsuario").attr('action' , 'javascript:getAtributos("Añadir");');
+          $("#formProyecto").attr('action' , 'javascript:getAtributos("Añadir");');
       }
 
       $("#idProyecto").val('');
@@ -195,19 +195,6 @@ function cerrarModal(){
 
 }
 
-function mostrarErrorBusq(){
-  // Ventana modal
-  document.getElementById("mensajeError").style.display = "block";
- 
-}
-
-function cerrarErrorBusq(){
-  // Ventana modal
-  document.getElementById("mensajeError").style.display = "none";
- 
-}
-
-
 function mostrarBorrar(id){
   // Ventana modal
   document.getElementById("comprobarBorrar").style.display = "block";
@@ -218,11 +205,4 @@ function mostrarBorrar(id){
 function borrar(){
   var id = document.getElementById("idBorrar").value
   deleteProyecto(id)
-}
-
-function cerrarBorrar(){
-  // Ventana modal
-  var modal = document.getElementById("comprobarBorrar");
-  modal.style.display = "none"
-
 }

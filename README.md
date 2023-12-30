@@ -14,16 +14,24 @@ Para poder instalar el proyecto se necesita contar con Docker para poder levanta
 
 Para poder levantar este entorno en docker tenemos que tener docker instalado en nuestro sistema operativo entrando en la [documentación de Docker](https://docs.docker.com/get-docker/)
 
-Una vez tenemos docker instalado, ejecutar los siguientes comandos para la instalación de nuestro proyecto:
+Podemos descargarnos el proyecto actualizado según la versión (tag) con la que contemos. En el caso de la primera entrega, tenemos u na tag v0.1, en la cual tenemos el código disponible hasta la primera entrega del proyecto. Se accede a esa tag y se descarga el código fuente (en zip o tar.gz). Una vez se descargue, se descomprime y se abre.
 
 ---------------------------------------
 
+Una vez tenemos docker instalado, ejecutar los siguientes comandos para la instalación de nuestro proyecto:
+
+Comando que compila el proyecto
 ```bash
 docker-compose build
 ```
-Comando que compila el proyecto
 
+Comando que levanta un contenedor con el entorno del proyecto
 ```bash
 docker-compose up
 ```
-Comando que levanta un contenedor con el entorno del proyecto
+
+---------------------------------------
+
+Se puede acceder a PHPMyAdmin a través de http://localhost:8081/. De hecho habrá que hacerlo tras arrancar el docker del proyecto, ya que se creará la base de datos importando el código SQL del fichero HubForest.sql, que se encuentra en la carpeta REST/HubForestBack/bd/. Una vez creada la estructura de la base de datos a partir de esta importación, podemos acceder a la página web de nuestro proyecto.
+
+Para poder acceder a nuestro proyecto desde el navegador, debemos acceder al enlace http://localhost:8080/HubForestView/index.html
