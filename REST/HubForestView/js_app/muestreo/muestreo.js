@@ -39,9 +39,9 @@ async function addMuestreo(nombremuestreo, fichero, tipoubicacion, proyecto, met
     const muestreo = {
         nombremuestreo: nombremuestreo,
         fichero: fichero,
-        tipoubicacion: tipoubicacion,
-        proyecto: proyecto,
-        metodologia: metodologia
+        tipoubicacion: parseInt(tipoubicacion),
+        proyecto: parseInt(proyecto),
+        metodologia: parseInt(metodologia)
     };
 
     return peticionBackGeneral('', 'muestreo', 'ADD', muestreo)
@@ -148,21 +148,21 @@ function mostrarModal(tipo, idMuestreo = null, nombremuestreo = null, fichero = 
     document.getElementById("aceptar").innerHTML = tipo;
 
     if (tipo.includes("Editar")) {
-        $("#formProyecto").attr('action', 'javascript:getAtributos("Editar");');
+        $("#formMuestreo").attr('action', 'javascript:getAtributos("Editar");');
     
         $("#idMuestreo").val(idMuestreo)
         $("#nombremuestreo").val(nombremuestreo)
-        $("fichero").val(fichero)
-        $("tipoubicacion").val(tipoubicacion)
-        $("proyecto").val(proyecto)
-        $("metodologia").val(metodologia)
+        $("#fichero").val(fichero)
+        $("#tipoubicacion").val(tipoubicacion)
+        $("#proyecto").val(proyecto)
+        $("#metodologia").val(metodologia)
     } else {
         if (tipo.includes("Buscar")) {
             document.getElementById("nombremuestreo").required = false;
             document.getElementById("fichero").required = false;
             document.getElementById("tipoubicacion").required = false;
             document.getElementById("proyecto").required = false;
-            document.getElementById("metodología").required = false;
+            document.getElementById("metodologia").required = false;
 
             $("#formMuestreo").attr('action', 'javascript:getAtributos("Buscar");')
         } else {
@@ -171,10 +171,10 @@ function mostrarModal(tipo, idMuestreo = null, nombremuestreo = null, fichero = 
 
         $("#idMuestreo").val('')
         $("#nombremuestreo").val('')
-        $("fichero").val('')
-        $("tipoubicacion").val('')
-        $("proyecto").val('')
-        $("metodologia").val('')
+        $("#fichero").val('')
+        $("#tipoubicacion").val('')
+        $("#proyecto").val('')
+        $("#metodologia").val('')
     }
 }
 
@@ -187,14 +187,14 @@ function cerrarModal() {
     document.getElementById("fichero").required = true;
     document.getElementById("tipoubicacion").required = true;
     document.getElementById("proyecto").required = true;
-    document.getElementById("metodología").required = true;
+    document.getElementById("metodologia").required = true;
 }
 
 function mostrarBorrar(id){
     // Ventana modal
     document.getElementById("comprobarBorrar").style.display = "block";
     $("#idBorrar").val(id)
-    $("#formBorrarProyecto").attr('action' , 'javascript:borrar();');
+    $("#formBorrarMuestreo").attr('action' , 'javascript:borrar();');
 }
 
 function borrar(){
