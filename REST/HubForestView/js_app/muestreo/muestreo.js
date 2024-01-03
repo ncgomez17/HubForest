@@ -1,4 +1,4 @@
-function getListMuestreos() {
+async function getListMuestreos() {
     return peticionBackGeneral('', 'muestreo', 'SEARCH')
         .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaMuestreo(response['resource']) : null)
         .catch(error => {
@@ -7,7 +7,7 @@ function getListMuestreos() {
         });
 }
 
-function getListByParamMuestreos(nombremuestreo, fichero, tipoubicacion) {
+async function getListByParamMuestreos(nombremuestreo, fichero, tipoubicacion) {
     const muestreo = {
         nombremuestreo: nombremuestreo,
         fichero: fichero,
@@ -21,7 +21,7 @@ function getListByParamMuestreos(nombremuestreo, fichero, tipoubicacion) {
         });
 }
 
-function getListByParamMuestreos_search(nombremuestreo, fichero, tipoubicacion) {
+async function getListByParamMuestreos_search(nombremuestreo, fichero, tipoubicacion) {
     const muestreo = {
         nombremuestreo: nombremuestreo,
         fichero: fichero,
@@ -35,7 +35,7 @@ function getListByParamMuestreos_search(nombremuestreo, fichero, tipoubicacion) 
         });
 }
 
-function addMuestreo(nombremuestreo, fichero, tipoubicacion, proyecto, metodologia) {
+async function addMuestreo(nombremuestreo, fichero, tipoubicacion, proyecto, metodologia) {
     const muestreo = {
         nombremuestreo: nombremuestreo,
         fichero: fichero,
@@ -55,7 +55,7 @@ function addMuestreo(nombremuestreo, fichero, tipoubicacion, proyecto, metodolog
         });
 }
 
-function editMuestreo(idMuestreo, nombre, fichero, tipoubicacion, proyecto, metodologia) {
+async function editMuestreo(idMuestreo, nombre, fichero, tipoubicacion, proyecto, metodologia) {
     const muestreo = {
         idMuestreo: idMuestreo,
         nombremuestreo: nombre,
@@ -76,7 +76,7 @@ function editMuestreo(idMuestreo, nombre, fichero, tipoubicacion, proyecto, meto
         });
 }
 
-function deleteMuestreo(idMuestreo) {
+async function deleteMuestreo(idMuestreo) {
   
     return peticionBackGeneral('', 'muestreo', 'DELETE', {'id': idMuestreo})
         .then(response => {

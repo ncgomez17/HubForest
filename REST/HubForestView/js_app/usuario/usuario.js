@@ -1,5 +1,5 @@
 
-function getListUsuarios() {
+async function getListUsuarios() {
 
     return peticionBackGeneral('', 'usuario', 'SEARCH')
         .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaUsuario(response['resource']) : null)
@@ -11,7 +11,7 @@ function getListUsuarios() {
 }
 
 
-function getListByParamUsuarios(nombre, correo, password, rol) {
+async function getListByParamUsuarios(nombre, correo, password, rol) {
     const usuario = {
         nombre: nombre,
         correo: correo,
@@ -26,7 +26,7 @@ function getListByParamUsuarios(nombre, correo, password, rol) {
         });
 }
 
-function getListByParamUsuarios_search(nombre, correo, password, rol) {
+async function getListByParamUsuarios_search(nombre, correo, password, rol) {
     const usuario = {
         nombre: nombre,
         correo: correo,
@@ -41,7 +41,7 @@ function getListByParamUsuarios_search(nombre, correo, password, rol) {
         });
 }
 
-function addUsuario(nombre, correo, password, rol) {
+async function addUsuario(nombre, correo, password, rol) {
     const usuario = {
         nombre: nombre,
         correo: correo,
@@ -60,7 +60,7 @@ function addUsuario(nombre, correo, password, rol) {
         });
 }
 
-function editUsuario(idUsuario,nombre, correo, password, rol) {
+async function editUsuario(idUsuario,nombre, correo, password, rol) {
     const usuario = {
         id: idUsuario,
         nombre: nombre,
@@ -80,7 +80,7 @@ function editUsuario(idUsuario,nombre, correo, password, rol) {
         });
 }
 
-function deleteUsuario(idUsuario) {
+async function deleteUsuario(idUsuario) {
     
     return peticionBackGeneral('', 'usuario', 'DELETE', {'id': idUsuario})
         .then(response => {
