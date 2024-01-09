@@ -35,13 +35,16 @@ function includeHeader() {
                 '<a class="nav-link" href="index.html">Inicio</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
-                '<a class="nav-link" href="listaUsuarios.html">Lista usuarios</a>' +
+                '<a class="nav-link" href="listaUsuarios.html">Usuarios</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
-                '<a class="nav-link" href="muestreos.html">Gestión muestreos</a>' +
+                '<a class="nav-link" href="proyectos.html">Proyectos</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
-                '<a class="nav-link" href="metodologias.html">Gestión metodologías</a>' +
+                '<a class="nav-link" href="muestreos.html">Muestreos</a>' +
+                '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="metodologias.html">Metodologías</a>' +
                 '</li>' +
                 '</ul>' +
                 '</div>' +
