@@ -7,11 +7,13 @@ async function getListMuestreos() {
         });
 }
 
-async function getListByParamMuestreos(nombremuestreo, fichero, tipoubicacion) {
+async function getListByParamMuestreos(nombremuestreo, fichero, tipoubicacion, proyecto, metodologia) {
     const muestreo = {
         nombremuestreo: nombremuestreo,
         fichero: fichero,
-        tipoubicacion: tipoubicacion
+        tipoubicacion: tipoubicacion,
+        proyecto: proyecto,
+        metodologia: metodologia
     };
     return peticionBackGeneral('', 'muestreo', 'SEARCH_BY', muestreo)
         .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaMuestreo(response['resource']) :  mostrarErrorBusq())
@@ -21,11 +23,13 @@ async function getListByParamMuestreos(nombremuestreo, fichero, tipoubicacion) {
         });
 }
 
-async function getListByParamMuestreos_search(nombremuestreo, fichero, tipoubicacion) {
+async function getListByParamMuestreos_search(nombremuestreo, fichero, tipoubicacion, proyecto, metodologia) {
     const muestreo = {
         nombremuestreo: nombremuestreo,
         fichero: fichero,
-        tipoubicacion: tipoubicacion
+        tipoubicacion: tipoubicacion, 
+        proyecto: proyecto,
+        metodologia: metodologia
     };
     return peticionBackGeneral('', 'muestreo', 'SEARCH', muestreo)
         .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaMuestreo(response['resource']) :  mostrarErrorBusq())
@@ -111,7 +115,7 @@ function construyeTablaMuestreo(filas) {
                     '</td> <td>' + fila.proyecto + 
                     '</td> <td>' + fila.metodologia + 
                     '</td> <td class="text-center">' + botonEdit +
-                    '</td> <td class="text-center"><button class="btn btn-danger" id="borrarMuestreo" onclick="mostrarBorrar(' + fila.id + ')">Eliminar</button>'
+                    '</td> <td class="text-center"><button class="btn btn-danger" id="borrarMuestreo" onclick="mostrarBorrar(' + fila.idMuestreo + ')">Eliminar</button>'
                     
                     '</td>  </tr>';
     });
