@@ -137,3 +137,8 @@ function cerrarBorrar(){
     var modal = document.getElementById("comprobarBorrar");
     modal.style.display = "none"
 }
+
+/**Función para encriptar la pass en md5*/
+function encriptar(idElemento){
+  	return hex_md5(document.getElementById(idElemento).value);
+}

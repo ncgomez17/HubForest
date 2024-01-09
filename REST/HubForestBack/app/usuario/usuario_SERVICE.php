@@ -5,7 +5,6 @@ include_once './Base/appServiceBase.php';
 class usuario_SERVICE extends appServiceBase{
 
 	public $modelo;
-
 	//METODOS
 
 	function __construct(){
@@ -23,42 +22,18 @@ class usuario_SERVICE extends appServiceBase{
 		$this->notnull = array(
 						'ADD' => array(),
 						'EDIT' => array(),
-						'DELETE' => array('id')
+						'DELETE' => array('id'),
+						'CAMBIAR_CONTRASENA'=>array('nombre','password')
 						);
 
 		$this->modelo = $this->crearModelOne('usuario');
 
 	}
 
-	function add(){
-		if($this->modelo->correo != null && $this->modelo->nombre != null &&
-		$this->modelo->password && $this->modelo->rol != null){
-
-
-			$this->modelo->ADD();
-
-		}
-	}
-	function delete(){
-		if($this->modelo->id != null){
-			$this->modelo->DELETE();
-
-		}
-	}
-	function edit(){
-		if($this->modelo->id != null && $this->modelo->correo != null && $this->modelo->nombre != null &&
-		$this->modelo->password && $this->modelo->rol != null){
-			$this->modelo->EDIT();
-
-		}
-	}
-	function search(){
-		$res = $this->modelo->SEARCH();
+	function cambiar_contrasena(){
+		$res = $this->modelo->cambiar_contrasena();
 		return $res;
 	}
-	function searchBy(){
-    $res = $this->modelo->SEARCH_BY();
-		return $res;
-	}
+	
 
 }

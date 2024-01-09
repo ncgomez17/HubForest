@@ -20,5 +20,11 @@ class usuario_MODEL extends ModelBase{
         $this->unicos = array();
 
 	}
+	function cambiar_contrasena(){
+		$this->mapping = new mapping($this->tabla);
+		$query = "UPDATE usuario SET password = '".$_POST['password']."' WHERE (nombre = '".$_POST['nombre']."')";
+		$result = $this->mapping->lanzarquery($query);
+		return $result;
+	}
 
 }

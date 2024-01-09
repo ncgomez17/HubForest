@@ -106,12 +106,11 @@ function construyeTablaUsuario(filas) {
 
     $("#datosUsuarios").html("");
     filas.forEach(fila => {
-        var atributosTabla = ["'" + fila.id + "'","'" + fila.nombre + "'", "'" + fila.password + "'", "'" + fila.correo + "'", "'" + fila.rol + "'"];
+        var atributosTabla = ["'" + fila.id + "'","'" + fila.nombre + "'", "'" + fila.correo + "'", "'" + fila.rol + "'"];
         var botonEdit='<button class="btn btn-info" id="editarUsuario" onclick="mostrarModal('+tipo+','+atributosTabla+')">Editar</button>'
 
         filasTabla += '<tr> <td>' + fila.id + 
                 '</td> <td>' + fila.nombre + 
-                '</td> <td>' + fila.password + 
                 '</td> <td>' + fila.correo + 
                 '</td> <td>' + fila.rol + 
                 '</td> <td class="text-center">' + botonEdit +
@@ -127,7 +126,7 @@ function construyeTablaUsuario(filas) {
 function getAtributos(tipo){
     var id = document.getElementById("id").value
     var nombre = document.getElementById("nombre").value
-    var password = document.getElementById("password").value
+    var password = encriptar("password")
     var correo = document.getElementById("correo").value
     var rol = document.getElementById("rol").value
      switch(tipo){
@@ -160,6 +159,7 @@ function mostrarModal(tipo, id=null, nombre=null, password=null, correo=null, ro
 
         $("#id").val(id);
         $("#nombre").val(nombre);
+        $('#formPassword').show();
         $("#password").val(password);
         $("#correo").val(correo);
         $("#rol").val(rol);
@@ -167,6 +167,7 @@ function mostrarModal(tipo, id=null, nombre=null, password=null, correo=null, ro
     else{
         if(tipo.includes("Buscar")){
             document.getElementById("nombre").required = false;
+            $('#formPassword').hide();
             document.getElementById("password").required = false;
             document.getElementById("correo").required = false;
             document.getElementById("rol").required = false;

@@ -10,6 +10,7 @@
     <script type="text/javascript" src="js_app/usuario/usuario.js"></script>
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="js/crearformularios.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
     <title>Listado de usuarios</title>
     <!-- Incluye los estilos de Bootstrap -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -37,7 +38,6 @@
             <thead >
                     <th class="id">Id</th>
                     <th class="nombre">Nombre</th>
-                    <th class="password">Password</th>
                     <th class="correo">Correo</th>
                     <th class="rol">Rol</th>
             </thead>
@@ -76,7 +76,7 @@
                     <input type="text" class="form-control" id="nombre" name="nombre" >
                 </div>
     
-                <div class="form-group">
+                <div id="formPassword" class="form-group">
                     <label for="password">Contraseña:</label>
                     <input type="text" class="form-control" id="password" name="password" >
                 </div>
