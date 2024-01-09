@@ -81,7 +81,34 @@ class AUTH_SERVICE extends appServiceBase{
 
 		return $feedback;
 
-	} 
+	}
+
+	function REGISTRAR(){
+			include_once './app/usuario/usuario_SERVICE.php';
+			$_POST['controlador'] = 'usuario';
+			$_POST['action'] = 'ADD';
+			$_POST['rol'] = 'Usuario';
+			$usuario = new usuario_SERVICE;
+			$res = $usuario->ejecutar();
+
+			if ($res['ok'] === true){ // no hay error insertando usuario
+				$res = $usuario->cambiar_contrasena();
+				if ($res['ok'] === true){ // no hay error cambiando la contraseña
+					$res['code'] = literal['REGISTRAR_OK'];
+				}
+				else //error cambiando contraseña
+				{
+					$res['code'] = literal['CAMBIAR_contrasena_KO'];
+				}
+			}
+			else{ //hay error insertando usuario
+				$_POST['action'] = 'DELETE';
+				$persona->ejecutar();
+			}
+
+		$res['resource'] = '';
+		return $res;
+	}
 
 	function CAMBIAR_CONTRASENA(){
 		

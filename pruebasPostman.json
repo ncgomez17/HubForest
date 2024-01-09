@@ -16,7 +16,7 @@
 					"formdata": [
 						{
 							"key": "entidad",
-							"value": "usuario",
+							"value": "proyecto",
 							"type": "text"
 						},
 						{
@@ -227,6 +227,70 @@
 			"response": []
 		},
 		{
+			"name": "form_entity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "controlador",
+							"value": "usuario",
+							"type": "text"
+						},
+						{
+							"key": "action",
+							"value": "SEARCH",
+							"type": "text"
+						},
+						{
+							"key": "correo",
+							"value": "correo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nombre",
+							"value": "nombre5",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "rol",
+							"value": "prueba",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "5",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/HubForestBack/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"HubForestBack",
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "searchByUsuarios",
 			"request": {
 				"method": "POST",
@@ -260,6 +324,193 @@
 							"value": "12345",
 							"type": "text",
 							"disabled": true
+						},
+						{
+							"key": "rol",
+							"value": "prueba",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "5",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/HubForestBack/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"HubForestBack",
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "controlador",
+							"value": "AUTH",
+							"type": "text"
+						},
+						{
+							"key": "action",
+							"value": "SEARCH_BY",
+							"type": "text"
+						},
+						{
+							"key": "correo",
+							"value": "correo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nombre",
+							"value": "pepe",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "rol",
+							"value": "prueba",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "5",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/HubForestBack/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"HubForestBack",
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTRAR",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "controlador",
+							"value": "AUTH",
+							"type": "text"
+						},
+						{
+							"key": "action",
+							"value": "REGISTRAR",
+							"type": "text"
+						},
+						{
+							"key": "correo",
+							"value": "correo2",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "pepe2",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "rol",
+							"value": "Usuario",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "5",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/HubForestBack/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"HubForestBack",
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cambiarContraseña",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "controlador",
+							"value": "AUTH",
+							"type": "text"
+						},
+						{
+							"key": "action",
+							"value": "CAMBIAR_CONTRASENA",
+							"type": "text"
+						},
+						{
+							"key": "correo",
+							"value": "correo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nombre",
+							"value": "pepe",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
 						},
 						{
 							"key": "rol",
