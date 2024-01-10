@@ -52,6 +52,7 @@ async function addUsuario(nombre, correo, password, rol) {
     return peticionBackGeneral('', 'usuario', 'ADD', usuario)
         .then(response => {
             location.reload();
+            response['resource']
             return { status: 'OK', data: response };
         })
         .catch(error => {
@@ -91,6 +92,77 @@ async function deleteUsuario(idUsuario) {
             console.error('Error en la solicitud:', error);
             return null;
         });
+}
+
+async function registrarUsuario(nombre, correo, password, rol) {
+
+    const usuario = {
+        nombre: nombre,
+        correo: correo,
+        password: password,
+        rol: rol
+    };
+
+    return peticionBackGeneral('', 'AUTH', 'REGISTRAR', usuario)
+        .then(response => {
+            setCookie("tokenUsuario",response['resource'], 1)
+            return { status: 'OK', data: response };
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+        
+}
+
+async function loginUsuario(nombre, password) {
+
+    const datos = {
+        nombre: nombre,
+        password: password
+    };
+
+    return peticionBackGeneral('', 'AUTH', 'LOGIN', datos)
+        .then(response => {
+            setCookie("tokenUsuario",response['resource'], 1)
+            return { status: 'OK', data: response };
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+        
+}
+
+async function cambiarContrasenha(nombre, password) {
+
+    const datos = {
+        nombre: nombre,
+        password: password
+    };
+
+    return peticionBackGeneral('', 'AUTH', 'CAMBIAR_CONTRASENA', datos)
+        .then(response => {
+            return { status: 'OK', data: response };
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+        
+}
+
+async function validarUsuario() {
+
+    return peticionBackGeneral('', 'AUTH', 'VALIDAR_TOKEN', '')
+        .then(response => {
+            return { status: 'OK', data: response };
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+        
 }
 
 function construyeTablaUsuario(filas) {

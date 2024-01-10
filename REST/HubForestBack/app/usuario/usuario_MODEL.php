@@ -27,4 +27,11 @@ class usuario_MODEL extends ModelBase{
 		return $result;
 	}
 
+	function comprobar_usuario($nombre, $password){
+		$this->mapping = new mapping($this->tabla);
+		$query = "SELECT *  FROM usuario WHERE  password = '".$password."' AND nombre = '".$nombre."'";
+		$result = $this->mapping->lanzarqueryconresults($query);
+		return $result;
+	}
+
 }

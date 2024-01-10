@@ -24,6 +24,7 @@ class AUTH_SERVICE extends appServiceBase{
 						'LOGIN'=>array('nombre', 'password'),
 						'DESCONECTAR'=>array('nombre'),
 						'CAMBIAR_CONTRASENA'=>array('nombre','password'),
+						'VALIDAR_TOKEN'=>array(),
 						'REGISTRAR'=>array('correo','nombre','password','rol')
 						);
 
@@ -88,6 +89,7 @@ class AUTH_SERVICE extends appServiceBase{
 			$_POST['controlador'] = 'usuario';
 			$_POST['action'] = 'ADD';
 			$_POST['rol'] = 'Usuario';
+			$res['resource'] = '';
 			$usuario = new usuario_SERVICE;
 			$res = $usuario->ejecutar();
 
@@ -95,6 +97,9 @@ class AUTH_SERVICE extends appServiceBase{
 				$res = $usuario->cambiar_contrasena();
 				if ($res['ok'] === true){ // no hay error cambiando la contraseña
 					$res['code'] = literal['REGISTRAR_OK'];
+					include_once "./Base/JWT/token.php";
+					$token = MiToken::creaToken($_POST['nombre'],$_POST['password'] );
+					$res['resource'] = $token;
 				}
 				else //error cambiando contraseña
 				{
@@ -106,7 +111,6 @@ class AUTH_SERVICE extends appServiceBase{
 				$persona->ejecutar();
 			}
 
-		$res['resource'] = '';
 		return $res;
 	}
 
@@ -127,13 +131,18 @@ class AUTH_SERVICE extends appServiceBase{
 	
 	}
 
-	function validar_token(){
+	function VALIDAR_TOKEN(){
 
 		include_once "./Base/JWT/token.php";
 		$current_token = $this->cargarTokenCabecera();
 		$resultado = MiToken::devuelveToken($current_token);
 		$password = $resultado->data->id;
 		$login = $resultado->data->name;
+		include_once './app/usuario/usuario_SERVICE.php';
+		$_POST['controlador'] = 'usuario';
+		$usuario = new usuario_SERVICE;
+		$res = $usuario->comprobar_usuario($login, $password);
+		return $res;
 		//echo 'comprobar en la bd si son correctos';
 	}
 
