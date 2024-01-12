@@ -10,7 +10,7 @@
     <script type="text/javascript" src="js_app/metodologia/metodologia.js"></script>
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="js/crearformularios.js"></script>
-    <title>Listado de usuarios</title>
+    <title>Listado de metodologías</title>
     <!-- Incluye los estilos de Bootstrap -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -28,11 +28,11 @@
         <div class="mt-2 mb-3 float-right">
             <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir metodologia')">Añadir metodología</button>
             <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar metodologia');cerrarErrorBusq()">Buscar metodología</button>
-            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListUsuarios()">Reiniciar tabla</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListMetodologias()">Reiniciar tabla</button>
             
         </div>
 
-        <table class="table table-striped" id="tablaUsuarios">
+        <table class="table table-striped" id="tablaMetodologías">
             <thead >
                     <th class="id">Id Metodología</th>
                     <th class="nombre">Nombre</th>
@@ -64,8 +64,8 @@
             </div>
             <form id="formMetodologia" action="" method="post" onsubmit="">
                 <div class="form-group">
-                    <label for="id" style="display: none;">Id metodología:</label>
-                    <input type="text" class="form-control" id="id" name="id" style="display: none;">
+                    <label for="idMetodologia" style="display: none;">Id metodología:</label>
+                    <input type="text" class="form-control" id="idMetodologia" name="idMetodologia" style="display: none;">
                 </div>
     
                 <div class="form-group">
