@@ -46,6 +46,9 @@ function includeHeader() {
                 '<li class="nav-item">' +
                 '<a class="nav-link" href="metodologias.html">Metodologías</a>' +
                 '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="muestreosrealizados.html">Muestreos realizados</a>' +
+                '</li>' +
                 '</ul>' +
                 '</div>' +
                 '</nav>' +

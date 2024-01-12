@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <script type="text/javascript" src="js/funcionesComunes.js"></script>
+    <script type="text/javascript" src="js_app/muestreorealizado/muestreorealizado.js"></script>
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/crearformularios.js"></script>
+    <title>Listado de usuarios</title>
+    <!-- Incluye los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body onload="(async () => {
+    includeHeader(); includeFooter();
+    getListMuestreosRealizados();
+})();">
+
+    <!-- Encabezado y Barra de Navegación -->
+    <div id="header"></div>
+
+    <div class="container mt-5">
+        <h2>Listado de muestreos realizados</h2>
+        <div class="mt-2 mb-3 float-right">
+            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir muestreo realizado')">Añadir muestreo realizado</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar muestreo realizado');cerrarErrorBusq()">Buscar muestreo realizado</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListMuestreosRealizados()">Reiniciar tabla</button>
+            
+        </div>
+
+        <table class="table table-striped" id="tablaUsuarios">
+            <thead >
+                    <th class="id">Id muestreo realizado</th>
+                    <th class="fechamuestreo">Fecha del muestreo</th>
+                    <th class="fichero">Fichero</th>
+                    <th class="usuario">Usuario</th>
+                    <th class="ubicacion">Ubicación</th>
+                    <th class="muestreo">Muestreo</th>
+            </thead>
+            
+            <tbody id="datosMuestreosRealizados">
+            </tbody>
+
+        </table>
+            <div id="formularioentidad"></div>
+    </div>
+
+    <div id="ventanaModal" class="modal">
+        <div class="contenido-modal">
+            <button class="btn btn-light float-right" aria-label="Close alert" onclick="cerrarModal()" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="Titulo"></div>
+            <div id="mensajeError" class="text-center" style="display: none;">             
+                <h7>
+                    No existen muestreos realizados que coincidan con estos parámetros
+                </h7>
+                <button class="btn sticky-top" aria-label="Close alert" onclick="cerrarErrorBusq()" data-close>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formMuestreoRealizado" action="" method="post" onsubmit="">
+                <div class="form-group">
+                    <label for="idMuestreoRealizado" style="display: none;">Id muestreo realizado:</label>
+                    <input type="text" class="form-control" id="idMuestreoRealizado" name="idMuestreoRealizado" style="display: none;">
+                </div>
+    
+                <div class="form-group">
+                    <label for="fechamuestreo">Fecha muestreo:</label>
+                    <input type="text" class="form-control" id="fechamuestreo" name="fechamuestreo" >
+                </div>
+    
+                <div class="form-group">
+                    <label for="fichero">Fichero:</label>
+                    <input type="text" class="form-control" id="fichero" name="fichero" >
+                </div>
+
+                <div class="form-group">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" >
+                </div>
+
+                <div class="form-group">
+                    <label for="ubicacion">Ubicación:</label>
+                    <input type="text" class="form-control" id="ubicacion" name="ubicacion" >
+                </div>
+    
+                <div class="form-group">
+                    <label for="muestreo">Muestreo:</label>
+                    <input type="text" class="form-control" id="muestreo" name="muestreo" >
+                </div>
+                
+                <button type="submit" id="aceptar" class="btn btn-primary"></button>
+                <button type="button" id="cerrar" class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+            </form> 
+        </div>
+    </div>
+
+    <div id="comprobarBorrar" class="modal">
+        <div class="contenido-modal">
+            <button class="btn btn-light float-right" aria-label="Close alert" onclick="cerrarBorrar()" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="text-center" id="Titulo"><h2>¿Estás seguro?</h2></div>
+            
+            <form id="formBorrarMuestreoRealizado" action="" method="post" onsubmit="">
+                <div class="form-group">
+                    <label for="id" style="display: none;">Id muestreo realizado:</label>
+                    <input type="text" class="form-control" id="idBorrar" name="id" style="display: none;">
+                </div>
+                <div class="col text-center">
+                    <button type="submit" id="aceptar" class="btn btn-danger">Aceptar</button>
+                    <button type="button" id="cerrar" class="btn btn-secondary" onclick="cerrarBorrar()">Cerrar</button>
+                </div>
+                
+            </form>  
+        </div>
+    </div>
+
+    <!-- Pie de Página -->
+	<div id="footer"><div>
+
+</body>
+</html>
