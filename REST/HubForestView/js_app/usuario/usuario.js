@@ -160,7 +160,7 @@ async function validarUsuario() {
         })
         .catch(error => {
             console.error('Error en la solicitud:', error);
-            return null;
+            return { status: 'False', data: response };;
         });
         
 }
