@@ -132,19 +132,24 @@ class AUTH_SERVICE extends appServiceBase{
 	}
 
 	function VALIDAR_TOKEN(){
+    try {
+        include_once "./Base/JWT/token.php";
+        $current_token = $this->cargarTokenCabecera();
+        $resultado = MiToken::devuelveToken($current_token);
+        $password = $resultado->data->id;
+        $login = $resultado->data->name;
+        include_once './app/usuario/usuario_SERVICE.php';
+        $_POST['controlador'] = 'usuario';
+        $usuario = new usuario_SERVICE;
+        $res = $usuario->comprobar_usuario($login, $password);
 
-		include_once "./Base/JWT/token.php";
-		$current_token = $this->cargarTokenCabecera();
-		$resultado = MiToken::devuelveToken($current_token);
-		$password = $resultado->data->id;
-		$login = $resultado->data->name;
-		include_once './app/usuario/usuario_SERVICE.php';
-		$_POST['controlador'] = 'usuario';
-		$usuario = new usuario_SERVICE;
-		$res = $usuario->comprobar_usuario($login, $password);
-		return $res;
-		//echo 'comprobar en la bd si son correctos';
-	}
+        return $res;
+    } catch (excepcionToken $e) {
+        // En caso de excepción, devolver respuesta con okk = false y code = BAD_TOKEN
+        return array('ok' => false, 'code' => 'BAD_TOKEN');
+    }
+}
+
 
 }
 

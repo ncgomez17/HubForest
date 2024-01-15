@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-md-6 offset-md-3">
+          <h2 class="text-center mb-4">Login</h2>
+          <form id="formLogin">
+              <div class="form-group">
+                  <label for="correoLogin">Nombre:</label>
+                  <input type="email" class="form-control" id="correoLogin" name="correoLogin" required>
+              </div>
+
+              <div class="form-group">
+                  <label for="passwordLogin">Contraseña:</label>
+                  <input type="password" class="form-control" id="passwordLogin" name="passwordLogin" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#registroModal">Registrarse</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+<!-- Modal de Registro -->
+<div class="modal" id="registroModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Registro</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <!-- Contenido del formulario de registro -->
+              <form id="formRegistro">
+                  <div class="form-group">
+                      <label for="nombre">Nombre:</label>
+                      <input type="text" class="form-control" id="nombre" name="nombre" required>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="correo">Contraseña:</label>
+                      <input type="email" class="form-control" id="correo" name="correo" required>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="password">Correo:</label>
+                      <input type="password" class="form-control" id="password" name="password" required>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Registrarse</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
