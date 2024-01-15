@@ -178,7 +178,7 @@ function construyeTablaUsuario(filas) {
 
     $("#datosUsuarios").html("");
     filas.forEach(fila => {
-        var atributosTabla = ["'" + fila.id + "'","'" + fila.nombre + "'", "'" + fila.correo + "'", "'" + fila.rol + "'"];
+        var atributosTabla = ["'" + fila.id + "'","'" + fila.nombre + "'", "'" + fila.password+ "'", "'" + fila.correo + "'", "'" + fila.rol + "'"];
         var botonEdit='<button class="btn btn-info" id="editarUsuario" onclick="mostrarModal('+tipo+','+atributosTabla+')">Editar</button>'
 
         filasTabla += '<tr> <td>' + fila.id + 
@@ -246,6 +246,11 @@ function mostrarModal(tipo, id=null, nombre=null, password=null, correo=null, ro
             $("#formUsuario").attr('action' , 'javascript:getAtributos("Buscar");');
         }
         else{
+            document.getElementById("nombre").required = true;
+            $('#formPassword').show();
+            document.getElementById("password").required = true;
+            document.getElementById("correo").required = true;
+            document.getElementById("rol").required = true;
             $("#formUsuario").attr('action' , 'javascript:getAtributos("Añadir");');
         }
 
@@ -263,10 +268,7 @@ function cerrarModal(){
     var modal = document.getElementById("ventanaModal");
     modal.style.display = "none"
 
-    document.getElementById("nombre").required = true;
-    document.getElementById("password").required = true;
-    document.getElementById("correo").required = true;
-    document.getElementById("rol").required = true;
+    
 
 }
 

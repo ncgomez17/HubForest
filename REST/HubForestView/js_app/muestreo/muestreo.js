@@ -105,10 +105,10 @@ function construyeTablaMuestreo(filas) {
     $("#datosMuestreos").html("");
 
     filas.forEach(fila => {
-        let atributosTabla = ["'" + fila.idMuestreo + "'", "'" + fila.nombremuestreo + "'", "'" + fila.fichero + "'", "'" + fila.tipoubicacion + "'", "'" + fila.proyecto + "'", "'" + fila.metodologia + "'"];
+        let atributosTabla = ["'" + fila.idmuestreo + "'", "'" + fila.nombremuestreo + "'", "'" + fila.fichero + "'", "'" + fila.tipoubicacion + "'", "'" + fila.proyecto + "'", "'" + fila.metodologia + "'"];
         let botonEdit='<button class="btn btn-info" id="editarMuestreo" onclick="mostrarModal(' + tipo + ',' + atributosTabla + ')">Editar</button>';
 
-        filasTabla += '<tr> <td>' + fila.idMuestreo + 
+        filasTabla += '<tr> <td>' + fila.idmuestreo + 
                     '</td> <td>' + fila.nombremuestreo + 
                     '</td> <td>' + fila.fichero + 
                     '</td> <td>' + fila.tipoubicacion + 

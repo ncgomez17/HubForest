@@ -104,10 +104,10 @@ function construyeTablaProyecto(filas) {
 
   $("#datosProyectos").html("");
   filas.forEach(fila => {
-      var atributosTabla = ["'" + fila.idProyecto + "'","'" + fila.nombre + "'", "'" + fila.fichero + "'", "'" + fila.descripcion + "'", "'" + fila.encargado + "'"];
+      var atributosTabla = ["'" + fila.idproyecto + "'","'" + fila.nombre + "'", "'" + fila.fichero + "'", "'" + fila.descripcion + "'", "'" + fila.encargado + "'"];
       var botonEdit='<button class="btn btn-info" id="editarProyecto" onclick="mostrarModal('+tipo+','+atributosTabla+')">Editar</button>'
 
-      filasTabla += '<tr> <td>' + fila.idProyecto + 
+      filasTabla += '<tr> <td>' + fila.idproyecto + 
               '</td> <td>' + fila.nombre + 
               '</td> <td>' + fila.fichero + 
               '</td> <td>' + fila.descripcion + 

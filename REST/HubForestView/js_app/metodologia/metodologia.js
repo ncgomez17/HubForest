@@ -7,12 +7,12 @@ async function getListMetodologias() {
         });
 }
 
-async function getListByParamMetodologias(nombre, fichero, descripcion, muestreo) {
+async function getListByParamMetodologias(nombre, fichero, descripcion) {
     const metodologia = {
         nombre: nombre,
         fichero: fichero,
-        descripcion: descripcion,
-        muestreo: muestreo
+        descripcion: descripcion
+
     };
     return peticionBackGeneral('', 'metodologia', 'SEARCH_BY', metodologia)
         .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaMetodologia(response['resource']) :  mostrarErrorBusq())
@@ -22,12 +22,12 @@ async function getListByParamMetodologias(nombre, fichero, descripcion, muestreo
         });
 }
 
-async function getListByParamMetodologias_search(nombre, fichero, descripcion, muestreo) {
+async function getListByParamMetodologias_search(nombre, fichero, descripcion) {
     const metodologia = {
         nombre: nombre,
         fichero: fichero,
-        descripcion: descripcion,
-        muestreo: muestreo
+        descripcion: descripcion
+
     };
     return peticionBackGeneral('', 'metodologia', 'SEARCH', metodologia)
         .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaMetodologia(response['resource']) :  mostrarErrorBusq())
@@ -37,12 +37,12 @@ async function getListByParamMetodologias_search(nombre, fichero, descripcion, m
         });
 }
 
-async function addMetodologia(nombre, fichero, descripcion, muestreo) {
+async function addMetodologia(nombre, fichero, descripcion) {
     const metodologia = {
         nombre: nombre,
         fichero: fichero,
-        descripcion: descripcion,
-        muestreo: muestreo
+        descripcion: descripcion
+
     };
 
     return peticionBackGeneral('', 'metodologia', 'ADD', metodologia)
@@ -56,18 +56,19 @@ async function addMetodologia(nombre, fichero, descripcion, muestreo) {
         });
 }
 
-async function editMetodologia(idMetodologia, nombre, fichero, descripcion, muestreo) {
+async function editMetodologia(idMetodologia, nombre, fichero, descripcion) {
+    
     const metodologia = {
-        idMetodologia: idMetodologia,
+        idmetodologia: idMetodologia,
         nombre: nombre,
         fichero: fichero,
-        descripcion: descripcion,
-        muestreo: muestreo
+        descripcion: descripcion
     };
 
     return peticionBackGeneral('', 'metodologia', 'EDIT', metodologia)
         .then(response => {
             location.reload();
+            
             return { status: 'OK', data: response }
         })
         .catch(error => {
@@ -76,9 +77,9 @@ async function editMetodologia(idMetodologia, nombre, fichero, descripcion, mues
         });
 }
 
-async function deleteMetodologia(idMetodologia) {
+async function deleteMetodologia(idmetodologia) {
   
-    return peticionBackGeneral('', 'metodologia', 'DELETE', {'id': idMetodologia})
+    return peticionBackGeneral('', 'metodologia', 'DELETE', {'idmetodologia': idmetodologia})
         .then(response => {
             location.reload();
             return { status: 'OK', data: response };
@@ -94,6 +95,7 @@ function construyeTablaMetodologia(filas) {
     let tipo = "'Editar metodologia'";
     let element = document.getElementById("datosMetodologias");
 
+
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
@@ -101,16 +103,15 @@ function construyeTablaMetodologia(filas) {
     $("#datosMetodologias").html("");
 
     filas.forEach(fila => {
-        let atributosTabla = ["'" + fila.idMetodologia + "'", "'" + fila.nombre + "'", "'" + fila.fichero + "'", "'" + fila.descripcion + "'", "'" + fila.muestreo + "'"];
+        let atributosTabla = ["'" + fila.idmetodologia + "'", "'" + fila.nombre + "'", "'" + fila.fichero + "'", "'" + fila.descripcion + "'"];
         let botonEdit='<button class="btn btn-info" id="editarMetodologia" onclick="mostrarModal(' + tipo + ',' + atributosTabla + ')">Editar</button>';
 
-        filasTabla += '<tr> <td>' + fila.idMetodologia + 
+        filasTabla += '<tr> <td>' + fila.idmetodologia + 
                     '</td> <td>' + fila.nombre + 
                     '</td> <td>' + fila.fichero + 
                     '</td> <td>' + fila.descripcion + 
-                    '</td> <td>' + fila.muestreo + 
                     '</td> <td class="text-center">' + botonEdit +
-                    '</td> <td class="text-center"><button class="btn btn-danger" id="borrarMetodologia" onclick="mostrarBorrar(' + fila.idMetodologia + ')">Eliminar</button>'
+                    '</td> <td class="text-center"><button class="btn btn-danger" id="borrarMetodologia" onclick="mostrarBorrar(' + fila.idmetodologia + ')">Eliminar</button>'
                     
                     '</td>  </tr>';
     });
@@ -124,22 +125,22 @@ function getAtributos(tipo) {
     let nombre = document.getElementById("nombre").value
     let fichero = document.getElementById("fichero").value
     let descripcion = document.getElementById("descripcion").value
-    let muestreo = document.getElementById("muestreo").value
-
+    
     switch (tipo) {
         case "Editar":
-            editMetodologia(idMetodologia, nombre, fichero, descripcion, muestreo)
+            
+            editMetodologia(idMetodologia, nombre, fichero, descripcion)
             break;
         case "Añadir":
-            addMetodologia(nombre, fichero, descripcion, muestreo)
+            addMetodologia(nombre, fichero, descripcion)
             break;
         case "Buscar":
-            getListByParamMetodologias_search(nombre, fichero, descripcion, muestreo)
+            getListByParamMetodologias_search(nombre, fichero, descripcion)
             break;
     }
 }
 
-function mostrarModal(tipo, idMetodologia = null, nombre = null, fichero = null, descripcion = null, muestreo = null) {
+function mostrarModal(tipo, idMetodologia = null, nombre = null, fichero = null, descripcion = null) {
     // Ventana modal
     document.getElementById("ventanaModal").style.display = "block";
     document.getElementById("Titulo").innerHTML = '<h2>' + tipo + '</h2>';
@@ -152,16 +153,19 @@ function mostrarModal(tipo, idMetodologia = null, nombre = null, fichero = null,
         $("#nombre").val(nombre)
         $("#fichero").val(fichero)
         $("#descripcion").val(descripcion)
-        $("#muestreo").val(muestreo)
+
     } else {
         if (tipo.includes("Buscar")) {
             document.getElementById("nombre").required = false;
             document.getElementById("fichero").required = false;
             document.getElementById("descripcion").required = false;
-            document.getElementById("muestreo").required = false;
+
 
             $("#formMetodologia").attr('action', 'javascript:getAtributos("Buscar");')
         } else {
+            document.getElementById("nombre").required = true;
+            document.getElementById("fichero").required = true;
+            document.getElementById("descripcion").required = true;
             $("#formMetodologia").attr('action', 'javascript:getAtributos("Añadir");')
         }
 
@@ -169,7 +173,7 @@ function mostrarModal(tipo, idMetodologia = null, nombre = null, fichero = null,
         $("#nombre").val('')
         $("#fichero").val('')
         $("#descripcion").val('')
-        $("#muestreo").val('')
+
     }
 }
 
@@ -178,10 +182,8 @@ function cerrarModal() {
     var modal = document.getElementById("ventanaModal");
     modal.style.display = "none"
 
-    document.getElementById("nombre").required = true;
-    document.getElementById("fichero").required = true;
-    document.getElementById("descripcion").required = true;
-    document.getElementById("muestreo").required = true;
+
+
 }
 
 function mostrarBorrar(id){

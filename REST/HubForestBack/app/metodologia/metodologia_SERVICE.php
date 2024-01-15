@@ -16,9 +16,9 @@ class metodologia_SERVICE extends appServiceBase{
 
 	function inicializarRest(){
 
-		$this->listaAtributos = array('idmetodologia','nombre','fichero','descripcion','muestreo');
+		$this->listaAtributos = array('idmetodologia','nombre','fichero','descripcion');
 
-		$this->listaAtributosSelect = array('idmetodologia','nombre','fichero','descripcion','muestreo');
+		$this->listaAtributosSelect = array('idmetodologia','nombre','fichero','descripcion');
 
 		$this->notnull = array(
 						'ADD' => array(),

@@ -7,47 +7,52 @@
     <link rel="stylesheet" href="css/modal.css">
     <link rel="icon" href="img/logo.png" type="image/png">
     <script type="text/javascript" src="js/funcionesComunes.js"></script>
-    <script type="text/javascript" src="js_app/metodologia/metodologia.js"></script>
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js_app/muestra/muestra.js"></script>
     <script type="text/javascript" src="js/crearformularios.js"></script>
-    <script type="text/javascript" src="js_app/metodologia/metodologia.js"></script>
-    <title>Listado de metodologías</title>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <title>Listado de tipos de ubicación</title>
     <!-- Incluye los estilos de Bootstrap -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body onload="(async () => {
     includeHeader(); includeFooter();
-    getListMetodologias();
+    getListMuestra();
 })();">
 
     <!-- Encabezado y Barra de Navegación -->
     <div id="header"></div>
 
     <div class="container mt-5">
-        <h2>Listado de metodologías</h2>
+        <h2>Listado de muestras</h2>
         <div class="mt-2 mb-3 float-right">
-            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir metodologia')">Añadir metodología</button>
-            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar metodologia');cerrarErrorBusq()">Buscar metodología</button>
-            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListMetodologias()">Reiniciar tabla</button>
+            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir muestra')">Añadir muestra</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar muestra');cerrarErrorBusq()">Buscar muestra</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListMuestra()">Reiniciar tabla</button>
             
         </div>
+            
 
-        <table class="table table-striped" id="tablaMetodologías">
+        <table class="table table-striped" id="tablaMuestras">
             <thead >
-                    <th class="id">Id Metodología</th>
+                    <th class="idmuestra">Id</th>
                     <th class="nombre">Nombre</th>
-                    <th class="fichero">Fichero</th>
-                    <th class="descripcion">Descripción</th>
+                    <th class="muestreo">Muestreo</th>
+                    <th class="malmacec">Metodo almacenamiento</th>
+                    <th class="mmuestreo">Metodo muestreo</th>
+                    <th class="mmmuestreo">Modificacion metodo muestreo</th>
             </thead>
             
-            <tbody id="datosMetodologias">
+            <tbody id="datosMuestras">
             </tbody>
-
+       
+            
         </table>
             <div id="formularioentidad"></div>
+        
     </div>
-
+    
     <div id="ventanaModal" class="modal">
         <div class="contenido-modal">
             <button class="btn btn-light float-right" aria-label="Close alert" onclick="cerrarModal()" data-close>
@@ -56,39 +61,49 @@
             <div id="Titulo"></div>
             <div id="mensajeError" class="text-center" style="display: none;">             
                 <h7>
-                    No existen metodologías que coincidan con estos parámetros
+                    No existen muestras que coincidan con estos parámetros
                 </h7>
                 <button class="btn sticky-top" aria-label="Close alert" onclick="cerrarErrorBusq()" data-close>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formMetodologia" action="" method="post" onsubmit="">
+            <form id="formMuestra" action="" method="post" onsubmit="">
                 <div class="form-group">
-                    <label for="idMetodologia" style="display: none;">Id metodología:</label>
-                    <input type="text" class="form-control" id="idMetodologia" name="idMetodologia" style="display: none;">
+                    <label for="idmuestra" style="display: none;">Id:</label>
+                    <input type="text" class="form-control" id="idmuestra" name="idmuestra" style="display: none;">
                 </div>
     
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" >
                 </div>
-    
+                
                 <div class="form-group">
-                    <label for="fichero">Fichero:</label>
-                    <input type="text" class="form-control" id="fichero" name="fichero" >
+                    <label for="muestreo">Muestreo:</label>
+                    <input type="text" class="form-control" id="muestreo" name="muestreo" >
                 </div>
 
                 <div class="form-group">
-                    <label for="descripcion">Descripción:</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" >
+                    <label for="malmacec">Metodo almacenamiento:</label>
+                    <input type="text" class="form-control" id="malmacec" name="malmacec" >
                 </div>
-                
+
+                <div class="form-group">
+                    <label for="mmuestreo">Metodo muestreo:</label>
+                    <input type="text" class="form-control" id="mmuestreo" name="mmuestreo" >
+                </div>
+
+                <div class="form-group">
+                    <label for="mmmuestreo">Modificacion metodo muestreo:</label>
+                    <input type="text" class="form-control" id="mmmuestreo" name="mmmuestreo" >
+                </div>
+
                 <button type="submit" id="aceptar" class="btn btn-primary"></button>
                 <button type="button" id="cerrar" class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
             </form> 
         </div>
     </div>
-
+    
     <div id="comprobarBorrar" class="modal">
         <div class="contenido-modal">
             <button class="btn btn-light float-right" aria-label="Close alert" onclick="cerrarBorrar()" data-close>
@@ -96,10 +111,10 @@
             </button>
             <div class="text-center" id="Titulo"><h2>¿Estás seguro?</h2></div>
             
-            <form id="formBorrarMetodologia" action="" method="post" onsubmit="">
+            <form id="formBorrarMuestra" action="" method="post" onsubmit="">
                 <div class="form-group">
-                    <label for="idBorrar" style="display: none;">Id metodología:</label>
-                    <input type="text" class="form-control" id="idBorrar" name="idBorrar" style="display: none;">
+                    <label for="idmuestra" style="display: none;">Id:</label>
+                    <input type="text" class="form-control" id="idBorrar" name="id" style="display: none;">
                 </div>
                 <div class="col text-center">
                     <button type="submit" id="aceptar" class="btn btn-danger">Aceptar</button>
@@ -112,6 +127,5 @@
 
     <!-- Pie de Página -->
 	<div id="footer"><div>
-
 </body>
 </html>

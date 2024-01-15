@@ -47,7 +47,13 @@ function includeHeader() {
                 '<a class="nav-link" href="metodologias.html">Metodologías</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
+                '<a class="nav-link" href="muestra.html">Muestras</a>' +
+                '</li>' +
+                '<li class="nav-item">' +
                 '<a class="nav-link" href="muestreosrealizados.html">Muestreos realizados</a>' +
+                '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="tipoUbicacion.html">Tipos de ubicacion</a>' +
                 '</li>' +
                 '</ul>' +
                 '</div>' +
