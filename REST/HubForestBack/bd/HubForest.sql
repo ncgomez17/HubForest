@@ -1,547 +1,591 @@
-CREATE DATABASE  IF NOT EXISTS `hubforest` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `hubforest`;
--- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: hubforest
--- ------------------------------------------------------
--- Server version	8.0.33
+-- Servidor: mariadb
+-- Tiempo de generación: 15-01-2024 a las 01:52:43
+-- Versión del servidor: 10.4.21-MariaDB-1:10.4.21+maria~focal
+-- Versión de PHP: 7.4.20
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `analisis`
+-- Base de datos: `HubForest`
 --
 
-DROP TABLE IF EXISTS `analisis`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `analisis`
+--
+
 CREATE TABLE `analisis` (
-  `idanalisis` int NOT NULL AUTO_INCREMENT,
+  `idanalisis` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `pmuestra` int DEFAULT NULL,
-  `manalisis` int DEFAULT NULL,
-  `mmanalisis` int DEFAULT NULL,
-  PRIMARY KEY (`idanalisis`),
-  KEY `manalisis_idx` (`manalisis`),
-  KEY `mmanalisis_idx` (`mmanalisis`),
-  KEY `pmuestra_idx` (`pmuestra`),
-  CONSTRAINT `manalisis` FOREIGN KEY (`manalisis`) REFERENCES `metodologiaanalisis` (`idmanalisis`),
-  CONSTRAINT `mmanalisis` FOREIGN KEY (`mmanalisis`) REFERENCES `metodologiaanalisis` (`idmanalisis`),
-  CONSTRAINT `pmuestra` FOREIGN KEY (`pmuestra`) REFERENCES `procesadomuestra` (`idpmuestra`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `pmuestra` int(11) DEFAULT NULL,
+  `manalisis` int(11) DEFAULT NULL,
+  `mmanalisis` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `analisis`
+-- Estructura de tabla para la tabla `metodoalmacenamiento`
 --
 
-LOCK TABLES `analisis` WRITE;
-/*!40000 ALTER TABLE `analisis` DISABLE KEYS */;
-/*!40000 ALTER TABLE `analisis` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `metodoalmacenamiento`
---
-
-DROP TABLE IF EXISTS `metodoalmacenamiento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `metodoalmacenamiento` (
-  `idmalmac` int NOT NULL AUTO_INCREMENT,
+  `idmalmac` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `descripcion` mediumtext,
-  `fichero` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`idmalmac`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `descripcion` mediumtext DEFAULT NULL,
+  `fichero` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `metodoalmacenamiento`
+-- Estructura de tabla para la tabla `metodologia`
 --
 
-LOCK TABLES `metodoalmacenamiento` WRITE;
-/*!40000 ALTER TABLE `metodoalmacenamiento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `metodoalmacenamiento` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `metodologia`
---
-
-DROP TABLE IF EXISTS `metodologia`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `metodologia` (
-  `idmetodologia` int NOT NULL AUTO_INCREMENT,
+  `idmetodologia` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `fichero` varchar(150) DEFAULT NULL,
-  `descripcion` mediumtext,
-  `muestreo` int DEFAULT NULL,
-  PRIMARY KEY (`idmetodologia`),
-  KEY `muestreo_idx` (`muestreo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `descripcion` mediumtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `metodologia`
+-- Estructura de tabla para la tabla `metodologiaanalisis`
 --
 
-LOCK TABLES `metodologia` WRITE;
-/*!40000 ALTER TABLE `metodologia` DISABLE KEYS */;
-/*!40000 ALTER TABLE `metodologia` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `metodologiaanalisis`
---
-
-DROP TABLE IF EXISTS `metodologiaanalisis`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `metodologiaanalisis` (
-  `idmanalisis` int NOT NULL,
-  `descripcion` mediumtext,
-  `fichero` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`idmanalisis`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `idmanalisis` int(11) NOT NULL,
+  `descripcion` mediumtext DEFAULT NULL,
+  `fichero` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `metodologiaanalisis`
+-- Estructura de tabla para la tabla `metodomuestreo`
 --
 
-LOCK TABLES `metodologiaanalisis` WRITE;
-/*!40000 ALTER TABLE `metodologiaanalisis` DISABLE KEYS */;
-/*!40000 ALTER TABLE `metodologiaanalisis` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `metodomuestreo`
---
-
-DROP TABLE IF EXISTS `metodomuestreo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `metodomuestreo` (
-  `idmmuestreo` int NOT NULL AUTO_INCREMENT,
+  `idmmuestreo` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `descripcion` mediumtext,
-  `fichero` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`idmmuestreo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `descripcion` mediumtext DEFAULT NULL,
+  `fichero` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `metodomuestreo`
+-- Estructura de tabla para la tabla `modificacionmetododemuestreo`
 --
 
-LOCK TABLES `metodomuestreo` WRITE;
-/*!40000 ALTER TABLE `metodomuestreo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `metodomuestreo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `modificacionmetododemuestreo`
---
-
-DROP TABLE IF EXISTS `modificacionmetododemuestreo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `modificacionmetododemuestreo` (
-  `idmmmuestreo` int NOT NULL AUTO_INCREMENT,
-  `descripcion` mediumtext,
-  `fichero` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`idmmmuestreo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `idmmmuestreo` int(11) NOT NULL,
+  `descripcion` mediumtext DEFAULT NULL,
+  `fichero` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `modificacionmetododemuestreo`
+-- Estructura de tabla para la tabla `modificacionmetodologiaanalisis`
 --
 
-LOCK TABLES `modificacionmetododemuestreo` WRITE;
-/*!40000 ALTER TABLE `modificacionmetododemuestreo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `modificacionmetododemuestreo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `modificacionmetodologiaanalisis`
---
-
-DROP TABLE IF EXISTS `modificacionmetodologiaanalisis`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `modificacionmetodologiaanalisis` (
-  `idmmanalisis` int NOT NULL,
-  `descripcion` mediumtext,
-  `fichero` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`idmmanalisis`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `idmmanalisis` int(11) NOT NULL,
+  `descripcion` mediumtext DEFAULT NULL,
+  `fichero` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `modificacionmetodologiaanalisis`
+-- Estructura de tabla para la tabla `muestra`
 --
 
-LOCK TABLES `modificacionmetodologiaanalisis` WRITE;
-/*!40000 ALTER TABLE `modificacionmetodologiaanalisis` DISABLE KEYS */;
-/*!40000 ALTER TABLE `modificacionmetodologiaanalisis` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `muestra`
---
-
-DROP TABLE IF EXISTS `muestra`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `muestra` (
-  `idmuestra` int NOT NULL AUTO_INCREMENT,
+  `idmuestra` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `muestreo` int DEFAULT NULL,
-  `malmacec` int DEFAULT NULL,
-  `mmuestreo` int DEFAULT NULL,
-  `mmmuestreo` int DEFAULT NULL,
-  PRIMARY KEY (`idmuestra`),
-  KEY `muestreo_idx` (`muestreo`),
-  KEY `malmac_idx` (`malmacec`),
-  KEY `mmuestreo_idx` (`mmuestreo`),
-  KEY `mmmuestreo_idx` (`mmmuestreo`),
-  CONSTRAINT `malmac` FOREIGN KEY (`malmacec`) REFERENCES `metodoalmacenamiento` (`idmalmac`),
-  CONSTRAINT `mmmuestreo` FOREIGN KEY (`mmmuestreo`) REFERENCES `modificacionmetododemuestreo` (`idmmmuestreo`),
-  CONSTRAINT `mmuestreo` FOREIGN KEY (`mmuestreo`) REFERENCES `metodomuestreo` (`idmmuestreo`),
-  CONSTRAINT `muestreo1` FOREIGN KEY (`muestreo`) REFERENCES `muestreo` (`idmuestreo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `muestreo` int(11) DEFAULT NULL,
+  `malmacec` int(11) DEFAULT NULL,
+  `mmuestreo` int(11) DEFAULT NULL,
+  `mmmuestreo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `muestra`
+-- Estructura de tabla para la tabla `muestreo`
 --
 
-LOCK TABLES `muestra` WRITE;
-/*!40000 ALTER TABLE `muestra` DISABLE KEYS */;
-/*!40000 ALTER TABLE `muestra` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `muestreo`
---
-
-DROP TABLE IF EXISTS `muestreo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `muestreo` (
-  `idmuestreo` int NOT NULL AUTO_INCREMENT,
+  `idmuestreo` int(11) NOT NULL,
   `nombremuestreo` varchar(45) DEFAULT NULL,
   `fichero` varchar(150) DEFAULT NULL,
-  `tipoubicacion` int DEFAULT NULL,
-  `proyecto` int DEFAULT NULL,
-  `metodologia` int DEFAULT NULL,
-  PRIMARY KEY (`idmuestreo`),
-  KEY `tipoubicacion_idx` (`tipoubicacion`),
-  KEY `proyecto_idx` (`proyecto`),
-  KEY `metodologia_idx` (`metodologia`),
-  CONSTRAINT `metodologia` FOREIGN KEY (`metodologia`) REFERENCES `metodologia` (`idmetodologia`),
-  CONSTRAINT `proyecto` FOREIGN KEY (`proyecto`) REFERENCES `proyecto` (`idproyecto`),
-  CONSTRAINT `tipoubicacion` FOREIGN KEY (`tipoubicacion`) REFERENCES `tipoubicacion` (`idtipoubicacion`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `tipoubicacion` int(11) DEFAULT NULL,
+  `proyecto` int(11) DEFAULT NULL,
+  `metodologia` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `muestreo`
+-- Estructura de tabla para la tabla `muestreorealizado`
 --
 
-LOCK TABLES `muestreo` WRITE;
-/*!40000 ALTER TABLE `muestreo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `muestreo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `muestreorealizado`
---
-
-DROP TABLE IF EXISTS `muestreorealizado`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `muestreorealizado` (
-  `idmuestreor` int NOT NULL AUTO_INCREMENT,
+  `idmuestreor` int(11) NOT NULL,
   `fechamuestreo` datetime(1) DEFAULT NULL,
   `fichero` varchar(150) DEFAULT NULL,
-  `usuario` int DEFAULT NULL,
-  `ubicacion` int DEFAULT NULL,
-  `muestreo` int DEFAULT NULL,
-  PRIMARY KEY (`idmuestreor`),
-  KEY `usuario_idx` (`usuario`),
-  KEY `ubicacion_idx` (`ubicacion`),
-  KEY `muestreo_idx` (`muestreo`),
-  CONSTRAINT `muestreo` FOREIGN KEY (`muestreo`) REFERENCES `muestreo` (`idmuestreo`),
-  CONSTRAINT `ubicacion` FOREIGN KEY (`ubicacion`) REFERENCES `ubicacion` (`idubicacion`),
-  CONSTRAINT `usuario` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `usuario` int(11) DEFAULT NULL,
+  `ubicacion` int(11) DEFAULT NULL,
+  `muestreo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `muestreorealizado`
+-- Estructura de tabla para la tabla `parametro`
 --
 
-LOCK TABLES `muestreorealizado` WRITE;
-/*!40000 ALTER TABLE `muestreorealizado` DISABLE KEYS */;
-/*!40000 ALTER TABLE `muestreorealizado` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `parametro`
---
-
-DROP TABLE IF EXISTS `parametro`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `parametro` (
-  `idparametro` int NOT NULL,
+  `idparametro` int(11) NOT NULL,
   `nombreparametro` varchar(45) DEFAULT NULL,
-  `analisis` int DEFAULT NULL,
-  PRIMARY KEY (`idparametro`),
-  KEY `analisis_idx` (`analisis`),
-  CONSTRAINT `analisis` FOREIGN KEY (`analisis`) REFERENCES `analisis` (`idanalisis`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `analisis` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `parametro`
+-- Estructura de tabla para la tabla `permisos`
 --
 
-LOCK TABLES `parametro` WRITE;
-/*!40000 ALTER TABLE `parametro` DISABLE KEYS */;
-/*!40000 ALTER TABLE `parametro` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `permisos`
---
-
-DROP TABLE IF EXISTS `permisos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permisos` (
-  `idpermisos` int NOT NULL AUTO_INCREMENT,
-  `usuario` int DEFAULT NULL,
-  `proyecto` int DEFAULT NULL,
-  PRIMARY KEY (`idpermisos`),
-  KEY `usuario1_idx` (`usuario`),
-  CONSTRAINT `proyecto1` FOREIGN KEY (`idpermisos`) REFERENCES `proyecto` (`idproyecto`),
-  CONSTRAINT `usuario1` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `idpermisos` int(11) NOT NULL,
+  `usuario` int(11) DEFAULT NULL,
+  `proyecto` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `permisos`
+-- Estructura de tabla para la tabla `preparacionanalisis`
 --
 
-LOCK TABLES `permisos` WRITE;
-/*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `preparacionanalisis`
---
-
-DROP TABLE IF EXISTS `preparacionanalisis`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `preparacionanalisis` (
-  `idpanalisis` int NOT NULL AUTO_INCREMENT,
-  `descripcion` mediumtext,
-  `fichero` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`idpanalisis`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `idpanalisis` int(11) NOT NULL,
+  `descripcion` mediumtext DEFAULT NULL,
+  `fichero` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `preparacionanalisis`
+-- Estructura de tabla para la tabla `procesadomuestra`
 --
 
-LOCK TABLES `preparacionanalisis` WRITE;
-/*!40000 ALTER TABLE `preparacionanalisis` DISABLE KEYS */;
-/*!40000 ALTER TABLE `preparacionanalisis` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `procesadomuestra`
---
-
-DROP TABLE IF EXISTS `procesadomuestra`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `procesadomuestra` (
-  `idpmuestra` int NOT NULL AUTO_INCREMENT,
-  `descripcion` mediumtext,
+  `idpmuestra` int(11) NOT NULL,
+  `descripcion` mediumtext DEFAULT NULL,
   `fichero` varchar(150) DEFAULT NULL,
-  `muestra` int DEFAULT NULL,
-  `panalisis` int DEFAULT NULL,
-  PRIMARY KEY (`idpmuestra`),
-  KEY `muestra_idx` (`muestra`),
-  KEY `panalisis_idx` (`panalisis`),
-  CONSTRAINT `muestra` FOREIGN KEY (`muestra`) REFERENCES `muestra` (`idmuestra`),
-  CONSTRAINT `panalisis` FOREIGN KEY (`panalisis`) REFERENCES `preparacionanalisis` (`idpanalisis`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `muestra` int(11) DEFAULT NULL,
+  `panalisis` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `procesadomuestra`
+-- Estructura de tabla para la tabla `proyecto`
 --
 
-LOCK TABLES `procesadomuestra` WRITE;
-/*!40000 ALTER TABLE `procesadomuestra` DISABLE KEYS */;
-/*!40000 ALTER TABLE `procesadomuestra` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `proyecto`
---
-
-DROP TABLE IF EXISTS `proyecto`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proyecto` (
-  `idproyecto` int NOT NULL AUTO_INCREMENT,
+  `idproyecto` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `fichero` varchar(150) DEFAULT NULL,
-  `descripcion` mediumtext,
-  `encargado` int DEFAULT NULL,
-  PRIMARY KEY (`idproyecto`),
-  KEY `encargado_idx` (`encargado`),
-  CONSTRAINT `encargado` FOREIGN KEY (`encargado`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `descripcion` mediumtext DEFAULT NULL,
+  `encargado` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `proyecto`
+-- Volcado de datos para la tabla `proyecto`
 --
 
-LOCK TABLES `proyecto` WRITE;
-/*!40000 ALTER TABLE `proyecto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `proyecto` ENABLE KEYS */;
-UNLOCK TABLES;
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `tipoubicacion`
+-- Estructura de tabla para la tabla `tipoubicacion`
 --
 
-DROP TABLE IF EXISTS `tipoubicacion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipoubicacion` (
-  `idtipoubicacion` int NOT NULL AUTO_INCREMENT,
-  `tipoubicacion` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idtipoubicacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `idtipoubicacion` int(11) NOT NULL,
+  `tipoubicacion` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `tipoubicacion`
+-- Estructura de tabla para la tabla `ubicacion`
 --
 
-LOCK TABLES `tipoubicacion` WRITE;
-/*!40000 ALTER TABLE `tipoubicacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipoubicacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ubicacion`
---
-
-DROP TABLE IF EXISTS `ubicacion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ubicacion` (
-  `idubicacion` int NOT NULL AUTO_INCREMENT,
+  `idubicacion` int(11) NOT NULL,
   `latitud` varchar(45) DEFAULT NULL,
-  `longitud` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idubicacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `longitud` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ubicacion`
+-- Volcado de datos para la tabla `ubicacion`
 --
 
-LOCK TABLES `ubicacion` WRITE;
-/*!40000 ALTER TABLE `ubicacion` DISABLE KEYS */;
-INSERT INTO `ubicacion` VALUES (1,'2','3');
-/*!40000 ALTER TABLE `ubicacion` ENABLE KEYS */;
-UNLOCK TABLES;
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `unidad`
+-- Estructura de tabla para la tabla `unidad`
 --
 
-DROP TABLE IF EXISTS `unidad`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `unidad` (
-  `idunidad` int NOT NULL,
+  `idunidad` int(11) NOT NULL,
   `nombreunidad` varchar(45) DEFAULT NULL,
-  `descripcion` mediumtext,
-  `parametro` int DEFAULT NULL,
-  PRIMARY KEY (`idunidad`),
-  KEY `parametro_idx` (`parametro`),
-  CONSTRAINT `parametro` FOREIGN KEY (`parametro`) REFERENCES `parametro` (`idparametro`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `descripcion` mediumtext DEFAULT NULL,
+  `parametro` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `unidad`
+-- Estructura de tabla para la tabla `usuario`
 --
 
-LOCK TABLES `unidad` WRITE;
-/*!40000 ALTER TABLE `unidad` DISABLE KEYS */;
-/*!40000 ALTER TABLE `unidad` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `usuario`
---
-
-DROP TABLE IF EXISTS `usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `correo` varchar(45) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `password` varchar(150) DEFAULT NULL,
-  `rol` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `rol` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+--
+-- Índices para tablas volcadas
+--
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indices de la tabla `analisis`
+--
+ALTER TABLE `analisis`
+  ADD PRIMARY KEY (`idanalisis`),
+  ADD KEY `manalisis_idx` (`manalisis`),
+  ADD KEY `mmanalisis_idx` (`mmanalisis`),
+  ADD KEY `pmuestra_idx` (`pmuestra`);
+
+--
+-- Indices de la tabla `metodoalmacenamiento`
+--
+ALTER TABLE `metodoalmacenamiento`
+  ADD PRIMARY KEY (`idmalmac`);
+
+--
+-- Indices de la tabla `metodologia`
+--
+ALTER TABLE `metodologia`
+  ADD PRIMARY KEY (`idmetodologia`);
+
+--
+-- Indices de la tabla `metodologiaanalisis`
+--
+ALTER TABLE `metodologiaanalisis`
+  ADD PRIMARY KEY (`idmanalisis`);
+
+--
+-- Indices de la tabla `metodomuestreo`
+--
+ALTER TABLE `metodomuestreo`
+  ADD PRIMARY KEY (`idmmuestreo`);
+
+--
+-- Indices de la tabla `modificacionmetododemuestreo`
+--
+ALTER TABLE `modificacionmetododemuestreo`
+  ADD PRIMARY KEY (`idmmmuestreo`);
+
+--
+-- Indices de la tabla `modificacionmetodologiaanalisis`
+--
+ALTER TABLE `modificacionmetodologiaanalisis`
+  ADD PRIMARY KEY (`idmmanalisis`);
+
+--
+-- Indices de la tabla `muestra`
+--
+ALTER TABLE `muestra`
+  ADD PRIMARY KEY (`idmuestra`),
+  ADD KEY `muestreo_idx` (`muestreo`),
+  ADD KEY `malmac_idx` (`malmacec`),
+  ADD KEY `mmuestreo_idx` (`mmuestreo`),
+  ADD KEY `mmmuestreo_idx` (`mmmuestreo`);
+
+--
+-- Indices de la tabla `muestreo`
+--
+ALTER TABLE `muestreo`
+  ADD PRIMARY KEY (`idmuestreo`),
+  ADD KEY `tipoubicacion_idx` (`tipoubicacion`),
+  ADD KEY `proyecto_idx` (`proyecto`),
+  ADD KEY `metodologia_idx` (`metodologia`);
+
+--
+-- Indices de la tabla `muestreorealizado`
+--
+ALTER TABLE `muestreorealizado`
+  ADD PRIMARY KEY (`idmuestreor`),
+  ADD KEY `usuario_idx` (`usuario`),
+  ADD KEY `ubicacion_idx` (`ubicacion`),
+  ADD KEY `muestreo_idx` (`muestreo`);
+
+--
+-- Indices de la tabla `parametro`
+--
+ALTER TABLE `parametro`
+  ADD PRIMARY KEY (`idparametro`),
+  ADD KEY `analisis_idx` (`analisis`);
+
+--
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD PRIMARY KEY (`idpermisos`),
+  ADD KEY `usuario1_idx` (`usuario`);
+
+--
+-- Indices de la tabla `preparacionanalisis`
+--
+ALTER TABLE `preparacionanalisis`
+  ADD PRIMARY KEY (`idpanalisis`);
+
+--
+-- Indices de la tabla `procesadomuestra`
+--
+ALTER TABLE `procesadomuestra`
+  ADD PRIMARY KEY (`idpmuestra`),
+  ADD KEY `muestra_idx` (`muestra`),
+  ADD KEY `panalisis_idx` (`panalisis`);
+
+--
+-- Indices de la tabla `proyecto`
+--
+ALTER TABLE `proyecto`
+  ADD PRIMARY KEY (`idproyecto`),
+  ADD KEY `encargado_idx` (`encargado`);
+
+--
+-- Indices de la tabla `tipoubicacion`
+--
+ALTER TABLE `tipoubicacion`
+  ADD PRIMARY KEY (`idtipoubicacion`);
+
+--
+-- Indices de la tabla `ubicacion`
+--
+ALTER TABLE `ubicacion`
+  ADD PRIMARY KEY (`idubicacion`);
+
+--
+-- Indices de la tabla `unidad`
+--
+ALTER TABLE `unidad`
+  ADD PRIMARY KEY (`idunidad`),
+  ADD KEY `parametro_idx` (`parametro`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `analisis`
+--
+ALTER TABLE `analisis`
+  MODIFY `idanalisis` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `metodoalmacenamiento`
+--
+ALTER TABLE `metodoalmacenamiento`
+  MODIFY `idmalmac` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `metodologia`
+--
+ALTER TABLE `metodologia`
+  MODIFY `idmetodologia` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `metodomuestreo`
+--
+ALTER TABLE `metodomuestreo`
+  MODIFY `idmmuestreo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `modificacionmetododemuestreo`
+--
+ALTER TABLE `modificacionmetododemuestreo`
+  MODIFY `idmmmuestreo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `muestra`
+--
+ALTER TABLE `muestra`
+  MODIFY `idmuestra` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `muestreo`
+--
+ALTER TABLE `muestreo`
+  MODIFY `idmuestreo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `muestreorealizado`
+--
+ALTER TABLE `muestreorealizado`
+  MODIFY `idmuestreor` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  MODIFY `idpermisos` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `preparacionanalisis`
+--
+ALTER TABLE `preparacionanalisis`
+  MODIFY `idpanalisis` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `procesadomuestra`
+--
+ALTER TABLE `procesadomuestra`
+  MODIFY `idpmuestra` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `proyecto`
+--
+ALTER TABLE `proyecto`
+  MODIFY `idproyecto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tipoubicacion`
+--
+ALTER TABLE `tipoubicacion`
+  MODIFY `idtipoubicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `ubicacion`
+--
+ALTER TABLE `ubicacion`
+  MODIFY `idubicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `analisis`
+--
+ALTER TABLE `analisis`
+  ADD CONSTRAINT `manalisis` FOREIGN KEY (`manalisis`) REFERENCES `metodologiaanalisis` (`idmanalisis`),
+  ADD CONSTRAINT `mmanalisis` FOREIGN KEY (`mmanalisis`) REFERENCES `metodologiaanalisis` (`idmanalisis`),
+  ADD CONSTRAINT `pmuestra` FOREIGN KEY (`pmuestra`) REFERENCES `procesadomuestra` (`idpmuestra`);
+
+--
+-- Filtros para la tabla `muestra`
+--
+ALTER TABLE `muestra`
+  ADD CONSTRAINT `malmac` FOREIGN KEY (`malmacec`) REFERENCES `metodoalmacenamiento` (`idmalmac`),
+  ADD CONSTRAINT `mmmuestreo` FOREIGN KEY (`mmmuestreo`) REFERENCES `modificacionmetododemuestreo` (`idmmmuestreo`),
+  ADD CONSTRAINT `mmuestreo` FOREIGN KEY (`mmuestreo`) REFERENCES `metodomuestreo` (`idmmuestreo`),
+  ADD CONSTRAINT `muestreo1` FOREIGN KEY (`muestreo`) REFERENCES `muestreo` (`idmuestreo`);
+
+--
+-- Filtros para la tabla `muestreo`
+--
+ALTER TABLE `muestreo`
+  ADD CONSTRAINT `metodologia` FOREIGN KEY (`metodologia`) REFERENCES `metodologia` (`idmetodologia`),
+  ADD CONSTRAINT `proyecto` FOREIGN KEY (`proyecto`) REFERENCES `proyecto` (`idproyecto`),
+  ADD CONSTRAINT `tipoubicacion` FOREIGN KEY (`tipoubicacion`) REFERENCES `tipoubicacion` (`idtipoubicacion`);
+
+--
+-- Filtros para la tabla `muestreorealizado`
+--
+ALTER TABLE `muestreorealizado`
+  ADD CONSTRAINT `muestreo` FOREIGN KEY (`muestreo`) REFERENCES `muestreo` (`idmuestreo`),
+  ADD CONSTRAINT `ubicacion` FOREIGN KEY (`ubicacion`) REFERENCES `ubicacion` (`idubicacion`),
+  ADD CONSTRAINT `usuario` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`);
+
+--
+-- Filtros para la tabla `parametro`
+--
+ALTER TABLE `parametro`
+  ADD CONSTRAINT `analisis` FOREIGN KEY (`analisis`) REFERENCES `analisis` (`idanalisis`);
+
+--
+-- Filtros para la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD CONSTRAINT `proyecto1` FOREIGN KEY (`idpermisos`) REFERENCES `proyecto` (`idproyecto`),
+  ADD CONSTRAINT `usuario1` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`);
+
+--
+-- Filtros para la tabla `procesadomuestra`
+--
+ALTER TABLE `procesadomuestra`
+  ADD CONSTRAINT `muestra` FOREIGN KEY (`muestra`) REFERENCES `muestra` (`idmuestra`),
+  ADD CONSTRAINT `panalisis` FOREIGN KEY (`panalisis`) REFERENCES `preparacionanalisis` (`idpanalisis`);
+
+--
+-- Filtros para la tabla `proyecto`
+--
+ALTER TABLE `proyecto`
+  ADD CONSTRAINT `encargado` FOREIGN KEY (`encargado`) REFERENCES `usuario` (`id`);
+
+--
+-- Filtros para la tabla `unidad`
+--
+ALTER TABLE `unidad`
+  ADD CONSTRAINT `parametro` FOREIGN KEY (`parametro`) REFERENCES `parametro` (`idparametro`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2023-12-12 23:31:31
