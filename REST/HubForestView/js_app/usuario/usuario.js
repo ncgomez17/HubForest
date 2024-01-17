@@ -105,12 +105,16 @@ async function registrarUsuario(nombre, correo, password, rol) {
 
     return peticionBackGeneral('', 'AUTH', 'REGISTRAR', usuario)
         .then(response => {
-            setCookie("tokenUsuario",response['resource'], 1)
-            return { status: 'OK', data: response };
+            if(response.ok){
+                setCookie("tokenUsuario",response.resource, 1)
+                return { status: 'OK', data: response };
+            } else{
+                return { status: 'KO', data: response }; 
+            }
         })
         .catch(error => {
             console.error('Error en la solicitud:', error);
-            return null;
+            return error;
         });
         
 }
@@ -124,12 +128,16 @@ async function loginUsuario(nombre, password) {
 
     return peticionBackGeneral('', 'AUTH', 'LOGIN', datos)
         .then(response => {
-            setCookie("tokenUsuario",response['resource'], 1)
-            return { status: 'OK', data: response };
+            if(response.ok){
+                setCookie("tokenUsuario",response.resource, 1)
+                return { status: 'OK', data: response };
+            } else{
+                return { status: 'KO', data: response }; 
+            }
         })
         .catch(error => {
             console.error('Error en la solicitud:', error);
-            return null;
+            return error;
         });
         
 }
@@ -154,7 +162,7 @@ async function cambiarContrasenha(nombre, password) {
 
 async function validarUsuario() {
 
-    return peticionBackGeneral('', 'AUTH', 'VALIDAR_TOKEN', '')
+    return peticionBackConToken('', 'AUTH', 'VALIDAR_TOKEN', getCookie("tokenUsuario") ,'')
         .then(response => {
             return { status: 'OK', data: response };
         })

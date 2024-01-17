@@ -1,6 +1,5 @@
 async function cargarRegistro() {
     const resultadoValidacion = await validarUsuario();
-    console.log(resultadoValidacion.data.ok);
     if(resultadoValidacion.data.ok ===false){
         $.ajax({
             url: 'registro.html',
@@ -9,6 +8,7 @@ async function cargarRegistro() {
             success: function(data) {
                 // Inserta el contenido en el div con id "contenido"
                 $('#contenido').html(data);
+                $( "#menu" ).hide();
             },
             error: function(error) {
                 console.error('Error al cargar la vista:', error);
@@ -23,6 +23,7 @@ else{
         success: function(data) {
             // Inserta el contenido en el div con id "contenido"
             $('#contenido').html(data);
+            $( "#menu" ).show();
         },
         error: function(error) {
             console.error('Error al cargar la vista:', error);
@@ -41,7 +42,7 @@ function includeHeader() {
                 '<div class="col-md-4">' +
                 '<img src="img/logo.png" alt="Logo de la Aplicación" class="img-fluid" style="width: 30%">' +
                 '</div>' +
-                '<div class="col-md-8">' +
+                '<div id="menu" class="col-md-8">' +
                 '<nav class="navbar navbar-expand-md navbar-dark">' +
                 '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">' +
                 '<span class="navbar-toggler-icon"></span>' +
@@ -147,7 +148,7 @@ function getCookie(name) {
 
 /** Comprueba que un usuario esté logueado, obteniendo la cookie 'token'*/
 function userLoggedIn() {
-    let user_token = getCookie('token');
+    let user_token = getCookie('tokenUsuario');
     return (user_token !== null);
 }
 
@@ -174,3 +175,42 @@ function cerrarBorrar(){
 function encriptar(idElemento){
   	return hex_md5(document.getElementById(idElemento).value);
 }
+
+function iniciarSesion() {
+    // Obtener los valores de nombre de usuario y contraseña
+    var nombreUsuario = $('#correoLogin').val();
+    var contrasena = encriptar('passwordLogin');
+    // Llamar a la función loginUsuario con los datos del formulario
+    loginUsuario(nombreUsuario, contrasena)
+      .then(response => {
+        if (response.status==="OK") {
+            cargarRegistro()
+        } else {
+          // Mostrar el modal de error en caso de un inicio de sesión fallido
+          $('#errorModal').modal('show');
+        }
+      });
+  }
+  function submitFormRegistro() {
+    const nombre = $('#nombre').val();
+    const password = encriptar('password');
+    const correo = $('#correo').val();
+
+    registrarUsuario(nombre, correo, password, 'Usuario')
+        .then(response => {
+            if (response && response.status === 'OK') {
+                $('#registroModal').modal('hide');
+                cargarRegistro();
+            } else {
+                $('#registroErrorModal').modal('show');
+            }
+        })
+        .catch(error => {
+            console.error('Error en el registro:', error);
+            $('#registroErrorModal').modal('show');
+        });
+
+    // Evitar que el formulario se envíe de manera tradicional
+    return false;
+}
+
