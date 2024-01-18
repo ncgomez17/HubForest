@@ -11,7 +11,7 @@
     <script type="text/javascript" src="js_app/tipoubicacion/tipoubicacion.js"></script>
     <script type="text/javascript" src="js/crearformularios.js"></script>
     <script type="text/javascript" src="js/md5.js"></script>
-    <title>Listado de tipos de ubicación</title>
+    <title>Tipos de ubicación</title>
     <!-- Incluye los estilos de Bootstrap -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -25,10 +25,10 @@
     <div id="header"></div>
 
     <div class="container mt-5">
-        <h2>Listado de tipos de ubicacion</h2>
+        <h2>Listado de tipos de ubicación</h2>
         <div class="mt-2 mb-3 float-right">
-            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir tipo ubicacion')">Añadir tipo ubicacion</button>
-            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar tipo ubicacion');cerrarErrorBusq()">Buscar tipo ubicacion</button>
+            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir tipo ubicación')">Añadir tipo ubicación</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar tipo ubicación');cerrarErrorBusq()">Buscar tipo ubicación</button>
             <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListTipoUbicacion()">Reiniciar tabla</button>
             
         </div>
@@ -37,7 +37,7 @@
         <table class="table table-striped" id="tablaTipoUbicacion">
             <thead >
                     <th class="idtipoubicacion">Id</th>
-                    <th class="tipoUbicacion">tipoUbicacion</th>
+                    <th class="tipoUbicacion">Tipo de ubicación</th>
             </thead>
             
             <tbody id="datosTipoUbicacion">

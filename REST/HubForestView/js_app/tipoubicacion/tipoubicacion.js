@@ -79,7 +79,7 @@ async function deleteTipoUbicacion(tipoubicacion) {
 
 function construyeTablaTipoUbicacion(filas) {
     let filasTabla = '';
-    let tipo = "'Editar tipo ubicacion'";
+    let tipo = "'Editar tipo ubicación'";
     let element = document.getElementById("datosTipoUbicacion");
 
     while (element.firstChild) {

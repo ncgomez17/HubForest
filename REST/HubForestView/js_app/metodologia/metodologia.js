@@ -92,7 +92,7 @@ async function deleteMetodologia(idmetodologia) {
 
 function construyeTablaMetodologia(filas) {
     let filasTabla = '';
-    let tipo = "'Editar metodologia'";
+    let tipo = "'Editar metodología'";
     let element = document.getElementById("datosMetodologias");
 
 
