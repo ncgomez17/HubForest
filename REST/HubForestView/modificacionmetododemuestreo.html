@@ -7,40 +7,39 @@
     <link rel="stylesheet" href="css/modal.css">
     <link rel="icon" href="img/logo.png" type="image/png">
     <script type="text/javascript" src="js/funcionesComunes.js"></script>
-    <script type="text/javascript" src="js_app/metodomuestreo/metodomuestreo.js"></script>
+    <script type="text/javascript" src="js_app/modificacionmetododemuestreo/modificacionmetododemuestreo.js"></script>
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="js/crearformularios.js"></script>
-    <title>Métodos de muestreo</title>
+    <title>Modificación de métodos de muestreo</title>
     <!-- Incluye los estilos de Bootstrap -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body onload="(async () => {
     includeHeader(); includeFooter();
-    getListMetodosMuestreo();
+    getListModifMetodosMuestreo();
 })();">
 
     <!-- Encabezado y Barra de Navegación -->
     <div id="header"></div>
 
     <div class="container mt-5">
-        <h2>Listado de métodos de muestreo</h2>
+        <h2>Listado de modificaciones de métodos de muestreo</h2>
         <div class="mt-2 mb-3 float-right">
-            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir método de muestreo')">Añadir método de muestreo</button>
-            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar método de muestreo');cerrarErrorBusq()">Buscar método de muestreo</button>
-            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListMetodosMuestreo()">Reiniciar tabla</button>
-             
+            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir modificación de método de muestreo')">Añadir modificación de método de muestreo</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar modificación de método de muestreo');cerrarErrorBusq()">Buscar modificación de método de muestreo</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListModifMetodosMuestreo()">Reiniciar tabla</button>
+            
         </div>
 
-        <table class="table table-striped" id="tablaMMuestreo">
+        <table class="table table-striped" id="tablaMMMuestreo">
             <thead >
-                    <th class="id">Id método muestreo</th>
-                    <th class="nombre">Nombre</th>
+                    <th class="id">Id modificación método muestreo</th>
                     <th class="descripcion">Descripción</th>
                     <th class="fichero">Fichero</th>
             </thead>
             
-            <tbody id="datosMMuestreo">
+            <tbody id="datosMMMuestreo">
             </tbody>
 
         </table>
@@ -55,21 +54,16 @@
             <div id="Titulo"></div>
             <div id="mensajeError" class="text-center" style="display: none;">             
                 <h7>
-                    No existen métodos de muestreo que coincidan con estos parámetros
+                    No existen modificaciones de métodos de muestreo que coincidan con estos parámetros
                 </h7>
                 <button class="btn sticky-top" aria-label="Close alert" onclick="cerrarErrorBusq()" data-close>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formMMuestreo" action="" method="post" onsubmit="">
+            <form id="formMMMuestreo" action="" method="post" onsubmit="">
                 <div class="form-group">
-                    <label for="idMMuestreo" style="display: none;">Id método muestreo:</label>
-                    <input type="text" class="form-control" id="idMMuestreo" name="idMMuestreo" style="display: none;">
-                </div>
-    
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" >
+                    <label for="idMMMuestreo" style="display: none;">Id método muestreo:</label>
+                    <input type="text" class="form-control" id="idMMMuestreo" name="idMMMuestreo" style="display: none;">
                 </div>
 
                 <div class="form-group">
@@ -95,9 +89,9 @@
             </button>
             <div class="text-center" id="Titulo"><h2>¿Estás seguro?</h2></div>
             
-            <form id="formBorrarMMuestreo" action="" method="post" onsubmit="">
+            <form id="formBorrarMMMuestreo" action="" method="post" onsubmit="">
                 <div class="form-group">
-                    <label for="idBorrar" style="display: none;">Id método muestreo:</label>
+                    <label for="idBorrar" style="display: none;">Id modificación de método de muestreo:</label>
                     <input type="text" class="form-control" id="idBorrar" name="idBorrar" style="display: none;">
                 </div>
                 <div class="col text-center">
