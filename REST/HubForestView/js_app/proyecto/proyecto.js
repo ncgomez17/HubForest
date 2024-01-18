@@ -80,7 +80,7 @@ function editProyecto(idProyecto, nombre, fichero, descripcion, encargado) {
 
 function deleteProyecto(idProyecto) {
   
-  return peticionBackGeneral('', 'proyecto', 'DELETE', {'id': idProyecto})
+  return peticionBackGeneral('', 'proyecto', 'DELETE', {'idproyecto': idProyecto})
       .then(response => {
           location.reload();
           return { status: 'OK', data: response };
@@ -113,7 +113,7 @@ function construyeTablaProyecto(filas) {
               '</td> <td>' + fila.descripcion + 
               '</td> <td>' + fila.encargado + 
               '</td> <td class="text-center">' + botonEdit +
-              '</td> <td class="text-center"><button class="btn btn-danger" id="borrarProyecto" onclick="mostrarBorrar('+fila.id+')">Eliminar</button>'
+              '</td> <td class="text-center"><button class="btn btn-danger" id="borrarProyecto" onclick="mostrarBorrar(' + fila.idproyecto + ')">Eliminar</button>'
               
               '</td>  </tr>';
   });
@@ -171,6 +171,10 @@ function mostrarModal(tipo, idProyecto=null, nombre=null, fichero=null, descripc
           $("#formProyecto").attr('action' , 'javascript:getAtributos("Buscar");');
       }
       else{
+          document.getElementById("nombre").required = true;
+          document.getElementById("fichero").required = true;
+          document.getElementById("descripcion").required = true;
+          document.getElementById("encargado").required = true;
           $("#formProyecto").attr('action' , 'javascript:getAtributos("Añadir");');
       }
 
@@ -187,12 +191,6 @@ function cerrarModal(){
   // Ventana modal
   var modal = document.getElementById("ventanaModal");
   modal.style.display = "none"
-
-  document.getElementById("nombre").required = true;
-  document.getElementById("fichero").required = true;
-  document.getElementById("descripcion").required = true;
-  document.getElementById("encargado").required = true;
-
 }
 
 function mostrarBorrar(id){

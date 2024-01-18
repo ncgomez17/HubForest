@@ -170,6 +170,11 @@ function mostrarModal(tipo, idMuestra = null, nombre = null, muestreo = null, ma
 
             $("#formMuestra").attr('action', 'javascript:getAtributos("Buscar");')
         } else {
+            document.getElementById("nombre").required = true;
+            document.getElementById("muestreo").required = true;
+            document.getElementById("malmacec").required = true;
+            document.getElementById("mmuestreo").required = true;
+            document.getElementById("mmmuestreo").required = true;
             $("#formMuestra").attr('action', 'javascript:getAtributos("Añadir");')
         }
 
@@ -187,11 +192,6 @@ function cerrarModal() {
     var modal = document.getElementById("ventanaModal");
     modal.style.display = "none"
 
-    document.getElementById("nombre").required = true;
-    document.getElementById("muestreo").required = true;
-    document.getElementById("malmacec").required = true;
-    document.getElementById("mmuestreo").required = true;
-    document.getElementById("mmmuestreo").required = true;
 }
 
 function mostrarBorrar(id){

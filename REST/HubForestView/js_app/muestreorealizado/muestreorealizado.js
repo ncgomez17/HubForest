@@ -82,7 +82,7 @@ async function editMuestreoRealizado(idMuestreoRealizado, fechamuestreo, fichero
 
 async function deleteMuestreoRealizado(idMuestreoRealizado) {
   
-    return peticionBackGeneral('', 'muestreorealizado', 'DELETE', {'id': idMuestreoRealizado})
+    return peticionBackGeneral('', 'muestreorealizado', 'DELETE', {'idmuestreor': idMuestreoRealizado})
         .then(response => {
             location.reload();
             return { status: 'OK', data: response };
@@ -105,17 +105,17 @@ function construyeTablaMuestreoRealizado(filas) {
     $("#datosMuestreosRealizados").html("");
 
     filas.forEach(fila => {
-        let atributosTabla = ["'" + fila.idMuestreoRealizado + "'", "'" + fila.fechamuestreo + "'", "'" + fila.fichero + "'", "'" + fila.usuario + "'", "'" + fila.ubicacion + "'", "'" + fila.muestreo + "'"];
+        let atributosTabla = ["'" + fila.idmuestreor + "'", "'" + fila.fechamuestreo + "'", "'" + fila.fichero + "'", "'" + fila.usuario + "'", "'" + fila.ubicacion + "'", "'" + fila.muestreo + "'"];
         let botonEdit='<button class="btn btn-info" id="editarMuestreoRealizado" onclick="mostrarModal(' + tipo + ',' + atributosTabla + ')">Editar</button>';
 
-        filasTabla += '<tr> <td>' + fila.idMuestreoRealizado + 
+        filasTabla += '<tr> <td>' + fila.idmuestreor + 
                     '</td> <td>' + fila.fechamuestreo + 
                     '</td> <td>' + fila.fichero + 
                     '</td> <td>' + fila.usuario +
                     '</td> <td>' + fila.ubicacion +
                     '</td> <td>' + fila.muestreo + 
                     '</td> <td class="text-center">' + botonEdit +
-                    '</td> <td class="text-center"><button class="btn btn-danger" id="borrarMuestreoRealizado" onclick="mostrarBorrar(' + fila.idMetodologia + ')">Eliminar</button>'
+                    '</td> <td class="text-center"><button class="btn btn-danger" id="borrarMuestreoRealizado" onclick="mostrarBorrar(' + fila.idmuestreor + ')">Eliminar</button>'
                     
                     '</td>  </tr>';
     });
@@ -170,6 +170,11 @@ function mostrarModal(tipo, idMuestreoRealizado = null, fechamuestreo = null, fi
 
             $("#formMuestreoRealizado").attr('action', 'javascript:getAtributos("Buscar");')
         } else {
+            document.getElementById("fechamuestreo").required = true;
+            document.getElementById("fichero").required = true;
+            document.getElementById("usuario").required = true;
+            document.getElementById("ubicacion").required = true;
+            document.getElementById("muestreo").required = true;
             $("#formMuestreoRealizado").attr('action', 'javascript:getAtributos("Añadir");')
         }
 
@@ -187,11 +192,6 @@ function cerrarModal() {
     var modal = document.getElementById("ventanaModal");
     modal.style.display = "none"
 
-    document.getElementById("fechamuestreo").required = true;
-    document.getElementById("fichero").required = true;
-    document.getElementById("usuario").required = true;
-    document.getElementById("ubicacion").required = true;
-    document.getElementById("muestreo").required = true;
 }
 
 function mostrarBorrar(id){

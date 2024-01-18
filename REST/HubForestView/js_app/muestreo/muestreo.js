@@ -82,7 +82,7 @@ async function editMuestreo(idMuestreo, nombre, fichero, tipoubicacion, proyecto
 
 async function deleteMuestreo(idMuestreo) {
   
-    return peticionBackGeneral('', 'muestreo', 'DELETE', {'id': idMuestreo})
+    return peticionBackGeneral('', 'muestreo', 'DELETE', {'idmuestreo': idMuestreo})
         .then(response => {
             location.reload();
             return { status: 'OK', data: response };
@@ -115,7 +115,7 @@ function construyeTablaMuestreo(filas) {
                     '</td> <td>' + fila.proyecto + 
                     '</td> <td>' + fila.metodologia + 
                     '</td> <td class="text-center">' + botonEdit +
-                    '</td> <td class="text-center"><button class="btn btn-danger" id="borrarMuestreo" onclick="mostrarBorrar(' + fila.idMuestreo + ')">Eliminar</button>'
+                    '</td> <td class="text-center"><button class="btn btn-danger" id="borrarMuestreo" onclick="mostrarBorrar(' + fila.idmuestreo + ')">Eliminar</button>'
                     
                     '</td>  </tr>';
     });
@@ -170,6 +170,11 @@ function mostrarModal(tipo, idMuestreo = null, nombremuestreo = null, fichero = 
 
             $("#formMuestreo").attr('action', 'javascript:getAtributos("Buscar");')
         } else {
+            document.getElementById("nombremuestreo").required = true;
+            document.getElementById("fichero").required = true;
+            document.getElementById("tipoubicacion").required = true;
+            document.getElementById("proyecto").required = true;
+            document.getElementById("metodologia").required = true;
             $("#formMuestreo").attr('action', 'javascript:getAtributos("Añadir");')
         }
 
@@ -187,11 +192,6 @@ function cerrarModal() {
     var modal = document.getElementById("ventanaModal");
     modal.style.display = "none"
 
-    document.getElementById("nombremuestreo").required = true;
-    document.getElementById("fichero").required = true;
-    document.getElementById("tipoubicacion").required = true;
-    document.getElementById("proyecto").required = true;
-    document.getElementById("metodologia").required = true;
 }
 
 function mostrarBorrar(id){
