@@ -79,6 +79,9 @@ function includeHeader() {
                 '<li class="nav-item">' +
                 '<a class="nav-link" href="metodoalmacenamiento.html">Métodos almacenamiento</a>' +
                 '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="metodomuestreo.html">Métodos muestreo</a>' +
+                '</li>' +
                 '</ul>' +
                 '</div>' +
                 '</nav>' +
