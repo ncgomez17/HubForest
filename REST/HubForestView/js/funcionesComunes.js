@@ -71,7 +71,10 @@ function includeHeader() {
                 '<a class="nav-link" href="muestreosrealizados.html">Muestreos realizados</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
-                '<a class="nav-link" href="tipoUbicacion.html">Tipos de ubicacion</a>' +
+                '<a class="nav-link" href="tipoUbicacion.html">Tipos de ubicación</a>' +
+                '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="ubicacion.html">Ubicaciones</a>' +
                 '</li>' +
                 '</ul>' +
                 '</div>' +
