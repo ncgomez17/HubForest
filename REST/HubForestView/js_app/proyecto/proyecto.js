@@ -60,7 +60,7 @@ function addProyecto(nombre, fichero, descripcion, encargado) {
 
 function editProyecto(idProyecto, nombre, fichero, descripcion, encargado) {
   const proyecto = {
-    idProyecto: idProyecto,
+    idproyecto: idProyecto,
     nombre: nombre,
     fichero: fichero,
     descripcion: descripcion,
