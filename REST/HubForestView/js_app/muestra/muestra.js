@@ -195,7 +195,7 @@ function mostrarModal(tipo, idMuestra = null, nombre = null, muestreo = null, ma
     if (tipo.includes("Editar")) {
         $("#formMuestra").attr('action', 'javascript:getAtributos("Editar");');
     
-        $("#idMuestra").val(idMuestra)
+        $("#idmuestra").val(idMuestra)
         $("#nombre").val(nombre)
         $("#muestreo").val(muestreo)
         $("#malmacec").val(malmacec)
@@ -219,7 +219,7 @@ function mostrarModal(tipo, idMuestra = null, nombre = null, muestreo = null, ma
             $("#formMuestra").attr('action', 'javascript:getAtributos("Añadir");')
         }
 
-        $("#idMuestra").val('')
+        $("#idmuestra").val('')
         $("#nombre").val('')
         $("#muestreo").val('')
         $("#malmacec").val('')

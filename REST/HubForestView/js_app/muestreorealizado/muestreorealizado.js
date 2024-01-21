@@ -61,7 +61,7 @@ async function addMuestreoRealizado(fechamuestreo, fichero, usuario, ubicacion, 
 
 async function editMuestreoRealizado(idMuestreoRealizado, fechamuestreo, fichero, usuario, ubicacion, muestreo) {
     const muestreoRealizado = {
-        idMuestreoRealizado: idMuestreoRealizado,
+        idmuestreor: idMuestreoRealizado,
         fechamuestreo: fechamuestreo,
         fichero: fichero,
         usuario: usuario,
@@ -152,7 +152,7 @@ function construyeTablaMuestreoRealizado(filas) {
 }
 
 function getAtributos(tipo) {
-    let idMuestreoRealizado = document.getElementById("idMuestreoRealizado").value
+    let idMuestreoRealizado = document.getElementById("idmuestreor").value
     let fechamuestreo = document.getElementById("fechamuestreo").value
     let fichero = document.getElementById("fichero").value
     let usuario = document.getElementById("usuario").value
@@ -185,7 +185,7 @@ function mostrarModal(tipo, idMuestreoRealizado = null, fechamuestreo = null, fi
     if (tipo.includes("Editar")) {
         $("#formMuestreoRealizado").attr('action', 'javascript:getAtributos("Editar");');
     
-        $("#idMuestreoRealizado").val(idMuestreoRealizado)
+        $("#idmuestreor").val(idMuestreoRealizado)
         $("#fechamuestreo").val(fechamuestreo)
         $("#fichero").val(fichero)
         $("#usuario").val(usuario)
@@ -209,7 +209,7 @@ function mostrarModal(tipo, idMuestreoRealizado = null, fechamuestreo = null, fi
             $("#formMuestreoRealizado").attr('action', 'javascript:getAtributos("Añadir");')
         }
 
-        $("#idMuestreoRealizado").val('')
+        $("#idmuestreor").val('')
         $("#fechamuestreo").val('')
         $("#fichero").val('')
         $("#usuario").val('')

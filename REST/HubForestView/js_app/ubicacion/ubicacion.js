@@ -53,6 +53,7 @@ async function addUbicacion(latitud, longitud) {
 async function editUbicacion(idubicacion, latitud, longitud) {
     
     const ubicacion = {
+        idubicacion: idubicacion,
         latitud: latitud,
         longitud: longitud
     };
@@ -119,13 +120,13 @@ function getAtributos(tipo) {
     
     switch (tipo) {
         case "Editar":
-            editMetodologia(idUbicacion, latitud, longitud)
+            editUbicacion(idUbicacion, latitud, longitud)
             break;
         case "Añadir":
-            addMetodologia(latitud, longitud)
+            addUbicacion(latitud, longitud)
             break;
         case "Buscar":
-            getListByParamMetodologias_search(latitud, longitud)
+            getListByParamUbicaciones_search(latitud, longitud)
             break;
     }
 }
