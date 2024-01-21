@@ -7,10 +7,11 @@ async function getListModifMetodosMuestreo() {
         });
 }
 
-async function getListByParamModifMetodosMuestreo(descripcion, fichero) {
+async function getListByParamModifMetodosMuestreo(descripcion, fichero, nombre) {
     const modificacionmetododemuestreo = {
         descripcion: descripcion,
-        fichero: fichero
+        fichero: fichero,
+        nombre: nombre
     };
     return peticionBackGeneral('', 'modificacionmetododemuestreo', 'SEARCH_BY', modificacionmetododemuestreo)
         .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaModifMetodoMuestreo(response['resource']) :  mostrarErrorBusq())
@@ -20,10 +21,11 @@ async function getListByParamModifMetodosMuestreo(descripcion, fichero) {
         });
 }
 
-async function getListByParamModifMetodosMuestreo_search(descripcion, fichero) {
+async function getListByParamModifMetodosMuestreo_search(descripcion, fichero, nombre) {
     const modificacionmetododemuestreo = {
         descripcion: descripcion,
-        fichero: fichero
+        fichero: fichero,
+        nombre: nombre
     };
     return peticionBackGeneral('', 'modificacionmetododemuestreo', 'SEARCH', modificacionmetododemuestreo)
         .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaModifMetodoMuestreo(response['resource']) :  mostrarErrorBusq())
@@ -33,10 +35,11 @@ async function getListByParamModifMetodosMuestreo_search(descripcion, fichero) {
         });
 }
 
-async function addModifMetodoMuestreo(descripcion, fichero) {
+async function addModifMetodoMuestreo(descripcion, fichero, nombre) {
     const modificacionmetododemuestreo = {
         descripcion: descripcion,
-        fichero: fichero
+        fichero: fichero,
+        nombre: nombre
     };
 
     return peticionBackGeneral('', 'modificacionmetododemuestreo', 'ADD', modificacionmetododemuestreo)
@@ -50,11 +53,12 @@ async function addModifMetodoMuestreo(descripcion, fichero) {
         });
 }
 
-async function editModifMetodoMuestreo(idmmmuestreo, descripcion, fichero) {
+async function editModifMetodoMuestreo(idmmmuestreo, descripcion, fichero, nombre) {
     const modificacionmetododemuestreo = {
         idmmmuestreo: idmmmuestreo,
         descripcion: descripcion,
-        fichero: fichero
+        fichero: fichero,
+        nombre: nombre
     };
 
     return peticionBackGeneral('', 'modificacionmetododemuestreo', 'EDIT', modificacionmetododemuestreo)
@@ -94,12 +98,13 @@ function construyeTablaModifMetodoMuestreo(filas) {
     $("#datosMMMuestreo").html("");
 
     filas.forEach(fila => {
-        let atributosTabla = ["'" + fila.idmmmuestreo + "'", "'" + fila.descripcion + "'", "'" + fila.fichero + "'"];
+        let atributosTabla = ["'" + fila.idmmmuestreo + "'", "'" + fila.descripcion + "'", "'" + fila.fichero + "'", "'" + fila.nombre + "'"];
         let botonEdit='<button class="btn btn-info" id="editarModifMetodoMuestreo" onclick="mostrarModal(' + tipo + ',' + atributosTabla + ')">Editar</button>';
 
         filasTabla += '<tr> <td>' + fila.idmmmuestreo + 
                     '</td> <td>' + fila.descripcion + 
-                    '</td> <td>' + fila.fichero + 
+                    '</td> <td>' + fila.fichero +
+                    '</td> <td>' + fila.nombre +
                     '</td> <td class="text-center">' + botonEdit +
                     '</td> <td class="text-center"><button class="btn btn-danger" id="borrarModifMetodoMuestreo" onclick="mostrarBorrar(' + fila.idmmmuestreo + ')">Eliminar</button>'
                     
@@ -114,21 +119,22 @@ function getAtributos(tipo) {
     let idMMMuestreo = document.getElementById("idMMMuestreo").value
     let descripcion = document.getElementById("descripcion").value
     let fichero = document.getElementById("fichero").value
+    let nombre = document.getElementById("nombre").value
     
     switch (tipo) {
         case "Editar":
-            editModifMetodoMuestreo(idMMMuestreo, descripcion, fichero)
+            editModifMetodoMuestreo(idMMMuestreo, descripcion, fichero, nombre)
             break;
         case "Añadir":
-            addModifMetodoMuestreo(descripcion, fichero)
+            addModifMetodoMuestreo(descripcion, fichero, nombre)
             break;
         case "Buscar":
-            getListByParamModifMetodosMuestreo_search(descripcion, fichero)
+            getListByParamModifMetodosMuestreo_search(descripcion, fichero, nombre)
             break;
     }
 }
 
-function mostrarModal(tipo, idMMMuestreo = null, descripcion = null, fichero = null) {
+function mostrarModal(tipo, idMMMuestreo = null, descripcion = null, fichero = null, nombre = null) {
     // Ventana modal
     document.getElementById("ventanaModal").style.display = "block";
     document.getElementById("Titulo").innerHTML = '<h2>' + tipo + '</h2>';
@@ -140,23 +146,25 @@ function mostrarModal(tipo, idMMMuestreo = null, descripcion = null, fichero = n
         $("#idMMMuestreo").val(idMMMuestreo)
         $("#descripcion").val(descripcion)
         $("#fichero").val(fichero)
-
+        $("#nombre").val(nombre)
     } else {
         if (tipo.includes("Buscar")) {
             document.getElementById("descripcion").required = false;
             document.getElementById("fichero").required = false;
+            document.getElementById("nombre").required = false;
 
             $("#formMMMuestreo").attr('action', 'javascript:getAtributos("Buscar");')
         } else {
             document.getElementById("descripcion").required = true;
             document.getElementById("fichero").required = true;
+            document.getElementById("nombre").required = true;
             $("#formMMMuestreo").attr('action', 'javascript:getAtributos("Añadir");')
         }
 
         $("#idMMMuestreo").val('')
         $("#descripcion").val('')
         $("#fichero").val('')
-
+        $("#nombre").val('')
     }
 }
 

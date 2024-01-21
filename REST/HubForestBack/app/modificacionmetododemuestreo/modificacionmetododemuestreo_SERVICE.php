@@ -16,9 +16,9 @@ class modificacionmetododemuestreo_SERVICE extends appServiceBase{
 
 	function inicializarRest(){
 
-		$this->listaAtributos = array('idmmmuestreo','descripcion','fichero');
+		$this->listaAtributos = array('idmmmuestreo','descripcion','fichero','nombre');
 
-		$this->listaAtributosSelect = array('idmmmuestreo','descripcion','fichero');
+		$this->listaAtributosSelect = array('idmmmuestreo','descripcion','fichero','nombre');
 
 		$this->notnull = array(
 						'ADD' => array(),
