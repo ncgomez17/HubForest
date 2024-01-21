@@ -38,11 +38,11 @@ function includeHeader() {
 
     let header = '<header class="bg-dark text-white py-3">' +
                 '<div class="container">' +
-                '<div class="row">' +
+                // '<div class="row">' +
                 '<div class="col-md-1">' +
                 '<img src="img/logo.png" alt="Logo de la Aplicación" class="img-fluid" style="width: 100%">' +
                 '</div>' +
-                '<div id="menu" class="col-md-11">' +
+                '<div id="menu" class="col-md-11 d-flex justify-content-center">' +
                 '<nav class="navbar navbar-expand-md navbar-dark">' +
                 '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">' +
                 '<span class="navbar-toggler-icon"></span>' +
@@ -95,7 +95,7 @@ function includeHeader() {
                 '</div>' +
                 '</nav>' +
                 '</div>' +
-                '</div>' +
+                // '</div>' +
                 '</div>' +
                 '</header>';
     

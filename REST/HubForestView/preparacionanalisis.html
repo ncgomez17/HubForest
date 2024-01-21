@@ -24,17 +24,17 @@
     <div id="header"></div>
 
     <div class="container mt-5">
-        <h2>Listado de preparaciones de analisis</h2>
+        <h2>Listado de preparaciones de análisis</h2>
         <div class="mt-2 mb-3 float-right">
-            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir preparacion de analisis')">Añadir preparacion de analisis</button>
-            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar preparacion de analisis');cerrarErrorBusq()">Buscar preparacion de analisis</button>
+            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir preparación de análisis')">Añadir preparación de análisis</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar preparación de análisis');cerrarErrorBusq()">Buscar preparación de análisis</button>
             <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListPreparacionAnalisis()">Reiniciar tabla</button>
              
         </div>
 
         <table class="table table-striped" id="tablapanalisis">
             <thead >
-                    <th class="id">Id preparacion analisis</th>
+                    <th class="id">Id preparación análisis</th>
                     <th class="nombre">Nombre</th>
                     <th class="descripcion">Descripción</th>
                     <th class="fichero">Fichero</th>
@@ -55,7 +55,7 @@
             <div id="Titulo"></div>
             <div id="mensajeError" class="text-center" style="display: none;">             
                 <h7>
-                    No existen preparaciones de analisis que coincidan con estos parámetros
+                    No existen preparaciones de análisis que coincidan con estos parámetros
                 </h7>
                 <button class="btn sticky-top" aria-label="Close alert" onclick="cerrarErrorBusq()" data-close>
                     <span aria-hidden="true">&times;</span>
@@ -63,7 +63,7 @@
             </div>
             <form id="formPAnalisis" action="" method="post" onsubmit="">
                 <div class="form-group">
-                    <label for="idpanalisis" style="display: none;">Id método muestreo:</label>
+                    <label for="idpanalisis" style="display: none;">Id preparación análisis:</label>
                     <input type="text" class="form-control" id="idpanalisis" name="idpanalisis" style="display: none;">
                 </div>
     
@@ -97,7 +97,7 @@
             
             <form id="formBorrarPAnalisis" action="" method="post" onsubmit="">
                 <div class="form-group">
-                    <label for="idBorrar" style="display: none;">Id preparacion analisis:</label>
+                    <label for="idBorrar" style="display: none;">Id preparación análisis:</label>
                     <input type="text" class="form-control" id="idBorrar" name="idBorrar" style="display: none;">
                 </div>
                 <div class="col text-center">
