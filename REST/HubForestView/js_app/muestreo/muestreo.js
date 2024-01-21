@@ -93,6 +93,33 @@ async function deleteMuestreo(idMuestreo) {
         });
 }
 
+async function getListTiposUbicacion(tipoubicacion) {
+    return peticionBackGeneral('', 'tipoubicacion', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectTiposUbicacion("tipoubicacion", response['resource'], tipoubicacion) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
+async function getListProyectos(proyecto) {
+    return peticionBackGeneral('', 'proyecto', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectProyectos("proyecto", response['resource'], proyecto) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
+async function getListMetodologias(metodologia) {
+    return peticionBackGeneral('', 'metodologia', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectMetodologias("metodologia", response['resource'], metodologia) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
 function construyeTablaMuestreo(filas) {
     let filasTabla = '';
     let tipo = "'Editar muestreo'";
@@ -151,6 +178,10 @@ function mostrarModal(tipo, idMuestreo = null, nombremuestreo = null, fichero = 
     document.getElementById("Titulo").innerHTML = '<h2>' + tipo + '</h2>';
     document.getElementById("aceptar").innerHTML = tipo;
 
+    getListTiposUbicacion(tipoubicacion);
+    getListProyectos(proyecto);
+    getListMetodologias(metodologia);
+
     if (tipo.includes("Editar")) {
         $("#formMuestreo").attr('action', 'javascript:getAtributos("Editar");');
     
@@ -185,6 +216,60 @@ function mostrarModal(tipo, idMuestreo = null, nombremuestreo = null, fichero = 
         $("#proyecto").val('')
         $("#metodologia").val('')
     }
+}
+
+function rellenarSelectTiposUbicacion(tipo, filas, tipoubicacion) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona tipo de ubicación --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.idtipoubicacion;
+        option.textContent = fila.tipoubicacion;
+        element.appendChild(option);
+    })
+
+    if (tipoubicacion != null) element.value = tipoubicacion;
+}
+
+function rellenarSelectProyectos(tipo, filas, proyecto) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona " + tipo + " --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.idproyecto;
+        option.textContent = fila.nombre;
+        element.appendChild(option);
+    })
+
+    if (proyecto != null) element.value = proyecto;
+}
+
+function rellenarSelectMetodologias(tipo, filas, metodologia) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona metodología --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.idmetodologia;
+        option.textContent = fila.nombre;
+        element.appendChild(option);
+    })
+
+    if (metodologia != null) element.value = metodologia;
 }
 
 function cerrarModal() {

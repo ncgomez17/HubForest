@@ -93,6 +93,42 @@ async function deleteMuestra(idMuestra) {
         });
 }
 
+async function getListMuestreo(muestreo) {
+    return peticionBackGeneral('', 'muestreo', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectMuestreos("muestreo", response['resource'], muestreo) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
+async function getListMetodosAlmac(malmacec) {
+    return peticionBackGeneral('', 'metodoalmacenamiento', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectMAlmac("malmacec", response['resource'], malmacec) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
+async function getListMetodosMuestreo(mmuestreo) {
+    return peticionBackGeneral('', 'metodomuestreo', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectMetodoMuestreo("mmuestreo", response['resource'], mmuestreo) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
+async function getListMMMuestreo(mmmuestreo) {
+    return peticionBackGeneral('', 'modificacionmetododemuestreo', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectMMMuestreo("mmmuestreo", response['resource'], mmmuestreo) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
 function construyeTablaMuestra(filas) {
     let filasTabla = '';
     let tipo = "'Editar muestra'";
@@ -151,6 +187,11 @@ function mostrarModal(tipo, idMuestra = null, nombre = null, muestreo = null, ma
     document.getElementById("Titulo").innerHTML = '<h2>' + tipo + '</h2>';
     document.getElementById("aceptar").innerHTML = tipo;
 
+    getListMuestreo(muestreo);
+    getListMetodosAlmac(malmacec);
+    getListMetodosMuestreo(mmuestreo);
+    getListMMMuestreo(mmmuestreo);
+
     if (tipo.includes("Editar")) {
         $("#formMuestra").attr('action', 'javascript:getAtributos("Editar");');
     
@@ -185,6 +226,78 @@ function mostrarModal(tipo, idMuestra = null, nombre = null, muestreo = null, ma
         $("#mmuestreo").val('')
         $("#mmmuestreo").val('')
     }
+}
+
+function rellenarSelectMuestreos(tipo, filas, muestreo) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona " + tipo + " --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.idmuestreo;
+        option.textContent = fila.nombremuestreo;
+        element.appendChild(option);
+    })
+
+    if (muestreo != null) element.value = muestreo;
+}
+
+function rellenarSelectMAlmac(tipo, filas, malmacec) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona método almacenamiento --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.idmalmac;
+        option.textContent = fila.nombre;
+        element.appendChild(option);
+    })
+
+    if (malmacec != null) element.value = malmacec;
+}
+
+function rellenarSelectMetodoMuestreo(tipo, filas, mmuestreo) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona método muestreo --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.idmmuestreo;
+        option.textContent = fila.nombre;
+        element.appendChild(option);
+    })
+
+    if (mmuestreo != null) element.value = mmuestreo;
+}
+
+function rellenarSelectMMMuestreo(tipo, filas, mmmuestreo) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona modificación método muestreo --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.idmmmuestreo;
+        option.textContent = fila.nombre;
+        element.appendChild(option);
+    })
+
+    if (mmmuestreo != null) element.value = mmmuestreo;
 }
 
 function cerrarModal() {

@@ -242,7 +242,7 @@ function rellenarSelectPA(tipo, filas, panalisis){
     let option = document.createElement( 'option' );
 
     option.value = ""
-    option.textContent = "-- Selecciona "+ tipo +" --";
+    option.textContent = "-- Selecciona preparación análisis --";
 
     element.appendChild( option );
 

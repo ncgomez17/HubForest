@@ -91,6 +91,15 @@ function deleteProyecto(idProyecto) {
       });
 }
 
+async function getListUsuarios(usuario) {
+    return peticionBackGeneral('', 'usuario', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectEncargado("encargado", response['resource'], usuario) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
 function construyeTablaProyecto(filas) {
 
   var filasTabla = ''
@@ -153,6 +162,9 @@ function mostrarModal(tipo, idProyecto=null, nombre=null, fichero=null, descripc
   document.getElementById("ventanaModal").style.display = "block";
   document.getElementById("Titulo").innerHTML = '<h2>'+tipo+'</h2>';
   document.getElementById("aceptar").innerHTML = tipo;
+
+  getListUsuarios(encargado);
+
   if(tipo.includes("Editar")){
       $("#formProyecto").attr('action' , 'javascript:getAtributos("Editar");');
 
@@ -186,6 +198,23 @@ function mostrarModal(tipo, idProyecto=null, nombre=null, fichero=null, descripc
   }
 }
 
+function rellenarSelectEncargado(tipo, filas, encargado) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona " + tipo + " --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.id;
+        option.textContent = fila.nombre;
+        element.appendChild(option);
+    })
+
+    if (encargado != null) element.value = encargado;
+}
 
 function cerrarModal(){
   // Ventana modal

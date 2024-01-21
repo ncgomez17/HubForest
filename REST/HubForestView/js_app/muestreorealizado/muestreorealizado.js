@@ -93,6 +93,33 @@ async function deleteMuestreoRealizado(idMuestreoRealizado) {
         });
 }
 
+async function getListUsuarios(usuario) {
+    return peticionBackGeneral('', 'usuario', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectUsuarios("usuario", response['resource'], usuario) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
+async function getListUbicacion(ubicacion) {
+    return peticionBackGeneral('', 'ubicacion', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectUbicacion("ubicacion", response['resource'], ubicacion) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
+async function getListMuestreo(muestreo) {
+    return peticionBackGeneral('', 'muestreo', 'SEARCH')
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? rellenarSelectMuestreo("muestreo", response['resource'], muestreo) : null)
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            return null;
+        });
+}
+
 function construyeTablaMuestreoRealizado(filas) {
     let filasTabla = '';
     let tipo = "'Editar muestreo realizado'";
@@ -151,6 +178,10 @@ function mostrarModal(tipo, idMuestreoRealizado = null, fechamuestreo = null, fi
     document.getElementById("Titulo").innerHTML = '<h2>' + tipo + '</h2>';
     document.getElementById("aceptar").innerHTML = tipo;
 
+    getListUsuarios(usuario);
+    getListUbicacion(ubicacion);
+    getListMuestreo(muestreo);
+
     if (tipo.includes("Editar")) {
         $("#formMuestreoRealizado").attr('action', 'javascript:getAtributos("Editar");');
     
@@ -185,6 +216,60 @@ function mostrarModal(tipo, idMuestreoRealizado = null, fechamuestreo = null, fi
         $("#ubicacion").val('')
         $("#muestreo").val('')
     }
+}
+
+function rellenarSelectUsuarios(tipo, filas, usuario) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona usuario --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.id;
+        option.textContent = fila.nombre;
+        element.appendChild(option);
+    })
+
+    if (usuario != null) element.value = usuario;
+}
+
+function rellenarSelectUbicacion(tipo, filas, ubicacion) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona ubicación --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.idubicacion;
+        option.textContent = "Latitud: " + fila.latitud + " - Longitud: " + fila.longitud;
+        element.appendChild(option);
+    })
+
+    if (ubicacion != null) element.value = ubicacion;
+}
+
+function rellenarSelectMuestreo(tipo, filas, muestreo) {
+    let element = document.getElementById(tipo);
+    let option = document.createElement('option');
+
+    option.value = "";
+    option.textContent = "-- Selecciona muestreo --";
+    element.appendChild(option);
+
+    filas.forEach(fila => {
+        option = document.createElement('option');
+        option.value = fila.idmuestreo;
+        option.textContent = fila.nombremuestreo;
+        element.appendChild(option);
+    })
+
+    if (muestreo != null) element.value = muestreo;
 }
 
 function cerrarModal() {
