@@ -53,7 +53,7 @@ function includeHeader() {
                 '<a class="nav-link" href="index.html">Inicio</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
-                '<a class="nav-link" href="listaUsuarios.html">Usuarios</a>' +
+                '<a class="nav-link" href="Usuarios.html">Usuarios</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
                 '<a class="nav-link" href="proyectos.html">Proyectos</a>' +
@@ -83,7 +83,13 @@ function includeHeader() {
                 '<a class="nav-link" href="metodomuestreo.html">Métodos muestreo</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
-                '<a class="nav-link" href="modificacionmetododemuestreo.html">Modif. métodos muestreo</a>' +
+                '<a class="nav-link" href="modificacionmetododemuestreo.html">Modif. métodos muestreo</a>' +                
+                '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="preparacionanalisis.html">Prep. analisis</a>' +
+                '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="procesadomuestra.html">Proc. muestra</a>' +
                 '</li>' +
                 '</ul>' +
                 '</div>' +
