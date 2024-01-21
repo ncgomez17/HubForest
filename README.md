@@ -35,3 +35,29 @@ docker-compose up
 Se puede acceder a PHPMyAdmin a través de http://localhost:8081/. De hecho habrá que hacerlo tras arrancar el docker del proyecto, ya que se creará la base de datos importando el código SQL del fichero HubForest.sql, que se encuentra en la carpeta REST/HubForestBack/bd/. Una vez creada la estructura de la base de datos a partir de esta importación, podemos acceder a la página web de nuestro proyecto.
 
 Para poder acceder a nuestro proyecto desde el navegador, debemos acceder al enlace http://localhost:8080/HubForestView/index.html
+
+Entrega 1:
+
+- Se implementa la entidad usuarios, en la que se muestra una lista con los usuarios que tenemos.
+- Se incluye la opción de añadir, editar y eliminar usuarios.
+
+Entrega 2:
+
+Para la entrega 2 incluímos las siguientes características:
+
+- Implementación completa, tanto back como front, con todas las opciones CRUD de las siguientes entidades:
+    - Proyectos
+    - Muestreos
+    - Metodologías
+    - Muestras
+    - Muestreos realizados
+    - Tipos de ubicación
+    - Ubicaciones
+    - Métodos de almacenamiento
+    - Métodos de muestreo
+    - Modificación de métodos de muestreo
+    - Preparación de análisis
+    - Procesado de muestras
+
+- Se añade un método de login y registro de usuarios, que provee un token al usuario para mantener iniciada la sesión
+- Se encriptan las contraseñas de los usuarios, de forma que en el front se obtienen, se encriptan y se envían encriptadas al back.
