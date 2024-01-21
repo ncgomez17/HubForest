@@ -40,7 +40,9 @@ function includeHeader() {
                 '<div class="container">' +
                 // '<div class="row">' +
                 '<div class="col-md-1">' +
+                '<a href="index.html" class="d-flex justify-content-start">' +
                 '<img src="img/logo.png" alt="Logo de la Aplicación" class="img-fluid" style="width: 100%">' +
+                '</a>' +
                 '</div>' +
                 '<div id="menu" class="col-md-11 d-flex justify-content-center">' +
                 '<nav class="navbar navbar-expand-md navbar-dark">' +
