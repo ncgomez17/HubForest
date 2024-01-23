@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <script type="text/javascript" src="js/funcionesComunes.js"></script>
+    <script type="text/javascript" src="js_app/modificacionmetodologiaanalisis/modificacionmetodologiaanalisis.js"></script>
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/crearformularios.js"></script>
+    <title>Modificación de métodoslogia de analisis</title>
+    <!-- Incluye los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body onload="(async () => {
+    includeHeader(); includeFooter();
+    getListModificacionMetodologiaAnalisis();
+})();">
+
+    <!-- Encabezado y Barra de Navegación -->
+    <div id="header"></div>
+
+    <div class="container mt-5">
+        <h2>Listado de modificaciones de métodoslogia de analisis</h2>
+        <div class="mt-2 mb-3 float-right">
+            <button class="btn btn-primary float-right" id="abrirModal" onclick="mostrarModal('Añadir modificación de métodologia de analisis')">Añadir modificación de métodologia de analisis</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="mostrarModal('Buscar modificación de métodologia de analisis');cerrarErrorBusq()">Buscar modificación de métodologia de analisis</button>
+            <button class="btn btn-outline-dark mr-3 float-right" id="abrirModal" onclick="getListModificacionMetodologiaAnalisis()">Reiniciar tabla</button>
+            
+        </div>
+
+        <table class="table table-striped" id="tablaMMAnalisis">
+            <thead >
+                    <th class="id">Id modificación métodologia de analisis</th>
+                    <th class="nombre">Nombre</th>
+                    <th class="descripcion">Descripción</th>
+                    <th class="fichero">Fichero</th>                    
+            </thead>
+            
+            <tbody id="datosMMAnalisis">
+            </tbody>
+
+        </table>
+            <div id="formularioentidad"></div>
+    </div>
+
+    <div id="ventanaModal" class="modal">
+        <div class="contenido-modal">
+            <button class="btn btn-light float-right" aria-label="Close alert" onclick="cerrarModal()" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="Titulo"></div>
+            <div id="mensajeError" class="text-center" style="display: none;">             
+                <h7>
+                    No existen modificaciones de metodologia de analisis que coincidan con estos parámetros
+                </h7>
+                <button class="btn sticky-top" aria-label="Close alert" onclick="cerrarErrorBusq()" data-close>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formMMAnalisis" action="" method="post" onsubmit="">
+                <div class="form-group">
+                    <label for="idMMAnalisis" style="display: none;">Id modificacion metodologia de analisis:</label>
+                    <input type="text" class="form-control" id="idMMAnalisis" name="idMMAnalisis" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre">
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion" >
+                </div>
+    
+                <div class="form-group">
+                    <label for="fichero">Fichero:</label>
+                    <input type="text" class="form-control" id="fichero" name="fichero" >
+                </div>
+                
+                <button type="submit" id="aceptar" class="btn btn-primary"></button>
+                <button type="button" id="cerrar" class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+            </form> 
+        </div>
+    </div>
+
+    <div id="comprobarBorrar" class="modal">
+        <div class="contenido-modal">
+            <button class="btn btn-light float-right" aria-label="Close alert" onclick="cerrarBorrar()" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="text-center" id="Titulo"><h2>¿Estás seguro?</h2></div>
+            
+            <form id="formBorrarMMAnalisis" action="" method="post" onsubmit="">
+                <div class="form-group">
+                    <label for="idBorrar" style="display: none;">Id modificación de modificacion de metodologia de analisis:</label>
+                    <input type="text" class="form-control" id="idBorrar" name="idBorrar" style="display: none;">
+                </div>
+                <div class="col text-center">
+                    <button type="submit" id="aceptar" class="btn btn-danger">Aceptar</button>
+                    <button type="button" id="cerrar" class="btn btn-secondary" onclick="cerrarBorrar()">Cerrar</button>
+                </div>
+                
+            </form>  
+        </div>
+    </div>
+
+    <!-- Pie de Página -->
+	<div id="footer"><div>
+
+</body>
+</html>

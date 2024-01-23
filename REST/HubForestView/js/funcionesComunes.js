@@ -91,6 +91,9 @@ function includeHeader() {
                 '<a class="nav-link" href="preparacionanalisis.html">Prep. analisis</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
+                '<a class="nav-link" href="modificacionmetodologiaanalisis.html">Mod. metodologia analisis</a>' +
+                '</li>' +
+                '<li class="nav-item">' +
                 '<a class="nav-link" href="procesadomuestra.html">Proc. muestra</a>' +
                 '</li>' +
                 '<li class="nav-item">' +

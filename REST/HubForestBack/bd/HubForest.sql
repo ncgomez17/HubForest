@@ -186,7 +186,7 @@ DROP TABLE IF EXISTS `modificacionmetodologiaanalisis`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `modificacionmetodologiaanalisis` (
-  `idmmanalisis` int NOT NULL,
+  `idmmanalisis` int NOT NULL AUTO_INCREMENT,
   `descripcion` mediumtext,
   `fichero` varchar(150) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
