@@ -1,15 +1,6 @@
 async function getListMuestreosRealizados() {
     return peticionBackGeneral('', 'muestreorealizado', 'SEARCH')
-        .then(response => {
-            // se coge la parte de la fecha y hora, sin obtener los segundos
-            response['resource'].map(muestreo => {
-                const fechaHora = muestreo.fechamuestreo.split(" ");
-                const fecha = fechaHora[0];
-                const hora = fechaHora[1].substring(0, fechaHora[1].lastIndexOf(":"));
-                muestreo.fechamuestreo = fecha + ' ' + hora;
-            });
-            (response['code'] === 'RECORDSET_DATOS') ? construyeTablaMuestreoRealizado(response['resource']) : null
-        })
+        .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaMuestreoRealizado(response['resource']) : null)
         .catch(error => {
             console.error('Error en la solicitud:', error);
             return null;
@@ -141,6 +132,12 @@ function construyeTablaMuestreoRealizado(filas) {
     $("#datosMuestreosRealizados").html("");
 
     filas.forEach(fila => {
+        // se coge la parte de la fecha y hora, sin obtener los segundos
+        const fechaHora = fila.fechamuestreo.split(" ");
+        const fecha = fechaHora[0];
+        const hora = fechaHora[1].substring(0, fechaHora[1].lastIndexOf(":"));
+        fila.fechamuestreo = fecha + ' ' + hora;
+
         let atributosTabla = ["'" + fila.idmuestreor + "'", "'" + fila.fechamuestreo + "'", "'" + fila.fichero + "'", "'" + fila.usuario + "'", "'" + fila.ubicacion + "'", "'" + fila.muestreo + "'"];
         let botonEdit='<button class="btn btn-info" id="editarMuestreoRealizado" onclick="mostrarModal(' + tipo + ',' + atributosTabla + ')">Editar</button>';
 

@@ -99,6 +99,9 @@ function includeHeader() {
                 '<li class="nav-item">' +
                 '<a class="nav-link" href="parametros.html">Parámetros</a>' +
                 '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="unidad.html">Unidades</a>' +
+                '</li>' +
                 '</ul>' +
                 '</div>' +
                 '</nav>' +
