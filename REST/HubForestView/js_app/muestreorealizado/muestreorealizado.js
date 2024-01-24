@@ -1,6 +1,15 @@
 async function getListMuestreosRealizados() {
     return peticionBackGeneral('', 'muestreorealizado', 'SEARCH')
-        .then(response => (response['code'] === 'RECORDSET_DATOS') ? construyeTablaMuestreoRealizado(response['resource']) : null)
+        .then(response => {
+            // se coge la parte de la fecha y hora, sin obtener los segundos
+            response['resource'].map(muestreo => {
+                const fechaHora = muestreo.fechamuestreo.split(" ");
+                const fecha = fechaHora[0];
+                const hora = fechaHora[1].substring(0, fechaHora[1].lastIndexOf(":"));
+                muestreo.fechamuestreo = fecha + ' ' + hora;
+            });
+            (response['code'] === 'RECORDSET_DATOS') ? construyeTablaMuestreoRealizado(response['resource']) : null
+        })
         .catch(error => {
             console.error('Error en la solicitud:', error);
             return null;
