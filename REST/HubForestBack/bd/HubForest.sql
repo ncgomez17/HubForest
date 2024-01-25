@@ -109,7 +109,7 @@ DROP TABLE IF EXISTS `metodologiaanalisis`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `metodologiaanalisis` (
-  `idmanalisis` int NOT NULL,
+  `idmanalisis` int NOT NULL AUTO_INCREMENT,
   `descripcion` mediumtext,
   `fichero` varchar(150) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
@@ -314,7 +314,7 @@ DROP TABLE IF EXISTS `parametro`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `parametro` (
-  `idparametro` int NOT NULL,
+  `idparametro` int NOT NULL AUTO_INCREMENT,
   `nombreparametro` varchar(45) DEFAULT NULL,
   `analisis` int DEFAULT NULL,
   PRIMARY KEY (`idparametro`),
@@ -501,7 +501,7 @@ DROP TABLE IF EXISTS `unidad`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `unidad` (
-  `idunidad` int NOT NULL,
+  `idunidad` int NOT NULL AUTO_INCREMENT,
   `nombreunidad` varchar(45) DEFAULT NULL,
   `descripcion` mediumtext,
   `parametro` int DEFAULT NULL,
