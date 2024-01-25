@@ -102,6 +102,12 @@ function includeHeader() {
                 '<li class="nav-item">' +
                 '<a class="nav-link" href="unidad.html">Unidades</a>' +
                 '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="analisis.html">Análisis</a>' +
+                '</li>' +
+                '<li class="nav-item">' +
+                '<a class="nav-link" href="metodologiaanalisis.html">Metod. análisis</a>' +
+                '</li>' +
                 '</ul>' +
                 '</div>' +
                 '</nav>' +
