@@ -32,25 +32,27 @@ else{
 }
 }
 
-/** Añade un header a una vista */
 function includeHeader() {
     $("#header").html("");
 
     let header = '<header class="bg-dark text-white py-3">' +
                 '<div class="container">' +
-                // '<div class="row">' +
+                '<div class="row">' +
                 '<div class="col-md-1">' +
                 '<a href="index.html" class="d-flex justify-content-start">' +
                 '<img src="img/logo.png" alt="Logo de la Aplicación" class="img-fluid" style="width: 100%">' +
                 '</a>' +
                 '</div>' +
-                '<div id="menu" class="col-md-11 d-flex justify-content-center">' +
+                '<div id="menu" class="col-md-11">' +
                 '<nav class="navbar navbar-expand-md navbar-dark">' +
                 '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">' +
                 '<span class="navbar-toggler-icon"></span>' +
                 '</button>' +
                 '<div class="collapse navbar-collapse" id="navbarNav">' +
-                '<ul class="navbar-nav ml-auto">' +
+                '<ul class="navbar-nav ml-auto">';
+
+    // Primera fila
+    header +=   '<div class="row">' +
                 '<li class="nav-item">' +
                 '<a class="nav-link" href="index.html">Inicio</a>' +
                 '</li>' +
@@ -71,8 +73,10 @@ function includeHeader() {
                 '</li>' +
                 '<li class="nav-item">' +
                 '<a class="nav-link" href="muestreosrealizados.html">Muestreos realizados</a>' +
-                '</li>' +
-                '<li class="nav-item">' +
+                '</li></div>';
+
+    // Segunda fila
+    header += '<div class="row">' +'<li class="nav-item">' +
                 '<a class="nav-link" href="tipoUbicacion.html">Tipos ubicación</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
@@ -92,8 +96,10 @@ function includeHeader() {
                 '</li>' +
                 '<li class="nav-item">' +
                 '<a class="nav-link" href="modificacionmetodologiaanalisis.html">Mod. metodologia analisis</a>' +
-                '</li>' +
-                '<li class="nav-item">' +
+                '</li></div>';
+
+    // Tercera fila
+    header += '<div class="row">' +'<li class="nav-item">' +
                 '<a class="nav-link" href="procesadomuestra.html">Proc. muestra</a>' +
                 '</li>' +
                 '<li class="nav-item">' +
@@ -107,17 +113,18 @@ function includeHeader() {
                 '</li>' +
                 '<li class="nav-item">' +
                 '<a class="nav-link" href="metodologiaanalisis.html">Metod. análisis</a>' +
-                '</li>' +
+                '</li></div>' +
                 '</ul>' +
                 '</div>' +
                 '</nav>' +
                 '</div>' +
-                // '</div>' +
+                '</div>' +
                 '</div>' +
                 '</header>';
     
     $("#header").append(header);
 }
+
 
 /** Añade el footer a una vista */
 function includeFooter() {
