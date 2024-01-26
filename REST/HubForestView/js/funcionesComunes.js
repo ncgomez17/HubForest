@@ -9,6 +9,7 @@ async function cargarRegistro() {
                 // Inserta el contenido en el div con id "contenido"
                 $('#contenido').html(data);
                 $( "#menu" ).hide();
+                $( "#logout" ).hide();
             },
             error: function(error) {
                 console.error('Error al cargar la vista:', error);
@@ -24,12 +25,18 @@ else{
             // Inserta el contenido en el div con id "contenido"
             $('#contenido').html(data);
             $( "#menu" ).show();
+            $( "#logout" ).show();
         },
         error: function(error) {
             console.error('Error al cargar la vista:', error);
         }
     });
 }
+}
+function logout(){
+
+    deleteCookie("tokenUsuario");
+    cargarRegistro();
 }
 
 function includeHeader() {
@@ -43,6 +50,11 @@ function includeHeader() {
                 '<img src="img/logo.png" alt="Logo de la Aplicación" class="img-fluid" style="width: 100%">' +
                 '</a>' +
                 '</div>' +
+                '<div class="col-md-1">' +
+                '<button id="logout" style="background-color: transparent; border: none; padding: 0;"  onclick="logout()">' +
+                '<img src="img/logout.png" alt="Logout" style="margin-top: 6px;">' +
+                '</button>' +
+                '</div>'+
                 '<div id="menu" class="col-md-11">' +
                 '<nav class="navbar navbar-expand-md navbar-dark">' +
                 '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">' +
@@ -186,6 +198,10 @@ function getCookie(name) {
     }
 
     return null;
+}
+
+function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
 /** Comprueba que un usuario esté logueado, obteniendo la cookie 'token'*/
